@@ -22,12 +22,14 @@ for key,value in test_dict.items() :
     if value >= rem :
         rem = value
         result = key
+
 key_list = []
+
 for key, value in test_dict.items() :
     if value == rem :
         key_list.append(key)
 
-# 딕셔너리를 담은 리스트로 변환 후 정렬해보기
+key_list.sort()
 
 
 print(round((sum(test_list)/a))) #산술평균
