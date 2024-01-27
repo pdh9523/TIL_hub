@@ -1,9 +1,11 @@
 a = int(input())
-test_list = []
+test_dict = {}
 for i in range(a) :
-    test_list.append(int(input()))
+    test_case = int(input())
+    if test_case not in test_dict : 
+        test_dict[test_case] = 1
+    else :
+        test_dict[test_case] += 1
 
-test_list.sort()
-
-for j in test_list :
+for k in range(test_dict[j]) :
     print(j)
