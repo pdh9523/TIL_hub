@@ -1,5 +1,3 @@
-import sys
-
 a,b = map(int,input().split())
 
 a_set = set()
