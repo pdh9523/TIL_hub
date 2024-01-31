@@ -2,7 +2,7 @@ from pprint import pprint as print
 t = int(input())
 
 for test_case in range(t) :
-    color_list = [[0 for x in range(11)] for x in range(11)] # 2차원 리스트를 만듭니다. (1번부터 적기 쉬우라고 한칸 더 만듬)
+    color_list = [[0 for _ in range(11)] for _ in range(11)] # 2차원 리스트를 만듭니다. (1번부터 적기 쉬우라고 한칸 더 만듬)
 
     tt = int(input()) # 색칠 횟수
     for j in range(tt) :
