@@ -4,7 +4,7 @@ for i in range(t) :
     n,m = map(int,input().split()) # 문제의 N, M 할당
     test_list = [] # 2차원 배열 생성
     for _ in range(n) :
-        rem = list(map(int,input().split())) 
+        rem = list(map(int,input().split()))
         test_list.append(rem)
     # 계산식
     output = 0
