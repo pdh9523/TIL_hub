@@ -11,3 +11,15 @@ for i in range(t) :
             break
     else :
         print(f"#{i+1} 0")
+
+
+t = int(input())
+for i in range(t) :
+
+    test_case = input()
+    compare_case = input()
+
+    if test_case in compare_case :
+        print(f"{i+1} 1")
+    else :
+        print(f"{i+1} 0")
