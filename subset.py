@@ -10,9 +10,8 @@ for i in range(1<<n) : # i = 0, 1, 2, 3, 4, 5, ... 15 (1<<n == 2**n)
             test_list.append(arr[j]) # 들어가 있으면 리스트에 담기 
     if len(test_list) >= 2 : # 이 과정에서 길이를 제한 가능
         bitset.append(test_list) # 부분 집합 리스트를 큰 리스트에 담기
-        if sum(test_list) == 3 :
-            print(test_list)
-            break
+
+
 print(bitset) # 모든 부분 집합이 들어있는 큰 리스트 출력
 
 # 비트연산이 싫어요
