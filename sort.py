@@ -15,7 +15,7 @@ for i in range(length) :    # 리스트틀 순회하면서 카운트 세기
 for j in range(1, max_value+1) :    # 카운트를 인덱스에 넣을 수 있도록 정리
     count[j] += count[j-1]
 
-for k in range(length) :    # arr의 인덱스를 순회하면서
+for k in range(length):    # arr의 인덱스를 순회하면서
     count[arr[k]] -= 1      # 숫자를 순차적으로 순회하면서 카운트의 값을 찾고
     sorted_arr[count[arr[k]]] = arr[k]      # count[arr[k]]에 담긴 인덱스를 활용해 위치에 바로 집어넣기
 

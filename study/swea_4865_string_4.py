@@ -13,6 +13,19 @@ for i in range(t) :
     for j in a_compare : # 문자열의 각 값이 딕셔너리에 있으면 +1 
         if j in a_dict.keys() :
             a_dict[j] += 1
-    
-    result = max(a_dict.values()) # value 중 최대값
+
+for i in range(t) :
+    test_case = input()
+
+    test_dict = {}
+    for char in test_dict :
+        test_dict.setdefault(char, 0)
+
+    compare_case = input()
+
+    for char in compare_case :
+        if char in test_dict :
+            test_dict[char] += 1
+
+    result = max(test_dict.values()) # value 중 최대값
     print(f"#{i+1} {result}") # 출력
