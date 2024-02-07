@@ -38,7 +38,7 @@ class Stack :
 
 a = Stack(10)
 
-t = "안녕하신지드"
+t = "Hello, World!"
 
 for char in t :
     a.push(char)
