@@ -1,19 +1,24 @@
-# x,y좌표 비교 최대 최소 출력
+space = [[0 for _ in range(101)] for _ in range(101)] # 인덱스 에러 방지를 위해 한칸 더 큰 리스트를 준비 (왼쪽은 0부터 시작하니까 상관없음)
 
 t = int(input())
-test_list = [[],[]]
+count = 0 # 결과 담을 변수
 for _ in range(t) :
-    x,y= map(int,input().split())
-    test_list[0].append(x)
-    test_list[1].append(y)
+    x,y = map(int,input().split())
+    #색종이 칠하기
+    for i in range(x,x+10) :
+        for j in range(y,y+10) :
+            space[i][j] = 1     
 
-x_max = max(test_list[0]) - min(test_list[0]) + 10
-y_max = max(test_list[1]) - min(test_list[1]) + 10
-
-x_min = max(test_list[0]) - min(test_list[0]) - 10
-y_min = max(test_list[1]) - min(test_list[1]) - 10
-
-if x_min <= 0 or y_min <= 0 :
-    print((x_max+y_max)*2)
-else :
-    print((x_max+y_max+x_min+y_min)*2)
+#겉에 있는 1의 값들을 모두 더한다.
+for i in range(100) :
+    for j in range(100) :
+        if space[i][j] == 1 and space[i][j+1] == 0 :
+            count += 1
+        if space[j][i] == 1 and space[j+1][i] == 0 :
+            count += 1
+        if space[i][j] == 1 and space[i][j-1] == 0 :
+            count += 1
+        if space[j][i] == 1 and space[j-1][i] == 0 :
+            count += 1
+# 결과 출력
+print(count)
