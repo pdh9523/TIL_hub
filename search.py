@@ -1,5 +1,1 @@
-import sys
-
-a=sys.stdin.readline().strip("\n")
-
-print(a)
+print(ord("A"))
