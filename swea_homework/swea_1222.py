@@ -1,3 +1,6 @@
+import sys
+sys.stdin = open("1222.txt")
+
 weight = {"+" : 1,
             "-" : 1,
             "*" : 2,
@@ -36,7 +39,7 @@ for i in range(1,11) :
     
     if len(rem) > 0 :
         test_list.append(rem) # 분리 완
-    
+    print(*test_list)
     stack = []
     
     result = []     # 후위계산식이 담길 리스트
@@ -59,12 +62,12 @@ for i in range(1,11) :
                 stack.append(num)
     while stack :   # 나머지 털기
         result.append(stack.pop())
+
     print(*result)
+
     result_stack = []
     for char in result :
         if char in weight :
-            # result_stack.append(str(eval(f"{result_stack.pop()}{char}{result_stack.pop()}")))
-            # eval 을 사용할 수 있지만, 여기선 안되니까 풀어씀
             b = float(result_stack.pop())	# 뒤의 값이 먼저 나온다
             a = float(result_stack.pop())
             if char == "+":
