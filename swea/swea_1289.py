@@ -8,4 +8,4 @@ for i in range(t) :
         if test_case[idx] != bit :
             count +=1
             bit=test_case[idx]
-    print(count)
+    print(f"#{i+1} {count}")
