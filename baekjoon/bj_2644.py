@@ -1,29 +1,32 @@
-size = int(input()) # 전체 사람 수
+from collections import deque
 
-a,b = map(int,input().split())
+size = int(input())                      # 전체 사람 수
 
-i = int(input())
-test_dict={}
-for _ in range(i) :
-    test_list = list(map(int,input().split()))
-    if test_list[0] in test_dict :
-        test_dict[test_list[0]].append(test_list[1])
-    else :
-        test_dict[test_list[0]] = [test_list[1]]
-    for i in range(1,size+1) :
-        if i not in test_dict :
-            test_dict[i] = []
-start = 0
-need_visited = []
-visited = []
+start,end = map(int,input().split())     # 구해야 하는 관계
 
-need_visited.append(start)
+t = int(input())
+tree = [[] for _ in range(size+1)]       # 트리는 아닌데 가계도가 family tree라..
+for _ in range(t):
+    s,e = map(int,input().split())       # 촌수는 양방향 관계
+    tree[s].append(e)
+    tree[e].append(s)
 
-while need_visited :
-    node = need_visited.pop()
 
-    if node not in visited :
-        visited.append(node)
+# 또또또 BFS
+visit = [0] * (size+1)
+q = deque([start])
+while q :
+    tc = q.popleft()
 
-        need_visited.extend(test_dict[node])
-print(visited)
+    if tree[tc] :
+        for item in tree[tc]:
+            if visit[item] == 0:
+                q.append(item)
+                visit[item] = visit[tc] +1
+                if item == end :
+                    print(visit[item])
+                    break
+
+if visit[end] == 0:
+    print(-1)
+# 34044kb / 64ms
