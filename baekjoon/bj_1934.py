@@ -4,6 +4,6 @@ for _ in range(t) :
     if a > b :
         a ,b = b, a 
     count = a
-    while a % count != 0 or b% count != 0 :
+    while a % count != 0 or b % count != 0 :
         count -=1
     print(int(a*b/count))
