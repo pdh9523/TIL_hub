@@ -1,22 +1,36 @@
-from collections import deque
+import sys
+import heapq
+
+def heapverse(lst) :
+    minus_lst = list(map(lambda x : -1 * x, lst))
+    heapq.heapify(minus_lst)
+    return minus_lst
+
 
 t = int(input())
 
-for _ in range(t):
-    k = int(input())
-    max_value = -1 * float("inf")
-    min_value = float("inf")
-    q = deque()
-    for _ in range(k):
-        order,value = input().split()
-        value = int(value)
-        if order == "I":
-            q.append(value)
-            if value > max_value :
-                max_value = value
-            elif value < min_value :
-                min_value = value
-        else :
-            if value == -1 :
 
-### 힙 연산 배우고 풀 것
+for _ in range(t):
+    i = int(input())
+    q = list()
+
+    for _ in range(i):
+        order, num = sys.stdin.readline().strip().split()
+        num = int(num)
+        if order == "I":
+            heapq.heappush(q,num)
+        if order == "D":
+            if len(q) != 0 :
+                if num == 1 :
+                    q = heapverse(q)
+                    heapq.heappop(q)
+                    q = heapverse(q)
+                if num == -1 :
+                    heapq.heappop(q)
+    if not q :
+        print("EMPTY")
+    else :
+        min_value = heapq.heappop(q)
+        q = heapverse(q)
+        max_value = -heapq.heappop(q)
+        print(max_value, min_value)
