@@ -1,8 +1,9 @@
+import sys
 import heapq
 
 def dijkstra(graph, start):
     # 시작 정점으로부터의 최단 거리를 저장하는 딕셔너리
-    dist = {vertex: float('infinity') for vertex in graph}
+    dist = {vertex: float('inf') for vertex in graph}
     dist[start] = 0  # 시작 정점의 거리는 0으로 설정
 
     # 우선순위 큐를 사용하여 방문할 정점을 관리
@@ -22,27 +23,25 @@ def dijkstra(graph, start):
             if dist_to_node < dist[node]:
                 dist[node] = dist_to_node
                 heapq.heappush(priority_q, (dist_to_node, node))
-
     return dist
-
-# 예시 그래프
-graph = {
-    'A': {'B': 3, 'C': 2},
-    'B': {'A': 3, 'C': 1, 'D': 5},
-    'C': {'A': 2, 'B': 1, 'D': 3},
-    'D': {'B': 5, 'C': 3}
-}
-
-start_vertex = 'A'
-shortest_distances = dijkstra(graph, start_vertex)
-print("최단 거리:", shortest_distances)
-
 V,E = map(int,input().split())
 
 start = int(input())
 
-graph = {}
+graph = {v : {} for v in range(1,V+1)}
 for _ in range(E):
-    u,v,w = map(int,input().split())
-    if graph[u][v] > w:
-        graph[u] = graph.update({v:w})
+    u,v,w = map(int,sys.stdin.readline().strip().split())
+
+    if u in graph and v in graph[u] and graph[u][v] < w :
+        pass
+    elif u in graph :
+        graph[u].update({v:w})
+    else :
+        graph[u] = {v:w}
+
+shortest_distances = dijkstra(graph, start)
+for value in shortest_distances.values():
+    if value == float("inf"):
+        print("INF")
+    else:
+        print(value)
