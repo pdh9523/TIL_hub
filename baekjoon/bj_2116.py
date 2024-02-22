@@ -7,13 +7,13 @@ t = int(input())
 dices = [[] for _ in range(t)]
 
 for i in range(t):
-    nums = list(map(int, sys.stdin.readline().strip().split()))
+    num = list(map(int, sys.stdin.readline().strip().split()))
 
-    dices[i].append([nums[0],nums[5]])            # 마주보는 면마다 따로따로 나눠 담기
+    dices[i].append([num[0],num[5]])            # 마주보는 면마다 따로따로 나눠 담기
 
-    dices[i].append([nums[1],nums[3]])
+    dices[i].append([num[1],num[3]])
     
-    dices[i].append([nums[2],nums[4]])
+    dices[i].append([num[2],num[4]])
 
 output = 0
 # 초기 설정값을 뭘로 두느냐 / target을 하나씩 옮겨가면서 검색 시작 
