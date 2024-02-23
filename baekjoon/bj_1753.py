@@ -24,20 +24,25 @@ def dijkstra(graph, start):
                 dist[node] = dist_to_node
                 heapq.heappush(priority_q, (dist_to_node, node))
     return dist
+
+
 V,E = map(int,input().split())
 
 start = int(input())
 
 graph = {v : {} for v in range(1,V+1)}
+
 for _ in range(E):
     u,v,w = map(int,sys.stdin.readline().strip().split())
 
-    if u in graph and v in graph[u] and graph[u][v] < w :
+    if u in graph and v in graph[u] and graph[u][v] < w :   # 가중치 최소값이 아니면 패스
         pass
+
     elif u in graph :
-        graph[u].update({v:w})
+        graph[u].update({v:w})  # 가중치 최소값이거나, 다른 원소를 추가할 경우 업데이트
+
     else :
-        graph[u] = {v:w}
+        graph[u] = {v:w}        # 새로 만드는 경우
 
 shortest_distances = dijkstra(graph, start)
 for value in shortest_distances.values():
