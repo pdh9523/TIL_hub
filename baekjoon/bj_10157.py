@@ -13,12 +13,12 @@ else :
     cnt = 0
     i, j = 0, 0
     dt = 0
-    while True :            
+    while True :
         # 카운트를 하나씩 올리면서 ij에 담음
         cnt += 1
         concert[i][j] = cnt
         # j,i 를 뽑는게 목표이므로 cnt를 1씩 올리면서 cnt가 지정된 K가 될때까지 반복
-        if cnt == K :           
+        if cnt == K :
             break
         # 다음 좌표로 이동
         i += dx[dt%4]
@@ -28,7 +28,7 @@ else :
         if 0 <= i < R and 0 <= j < C:
             if concert[i][j] != 0:
                 i -= dx[dt%4]       # i, j에 더했던 값을 도로 물리고
-                j -= dy[dt%4]     
+                j -= dy[dt%4]
                 dt += 1             # 델타 탐색 계수를 올린 뒤
                 i += dx[dt%4]       # 델타를 바꿔 다시 탐색
                 j += dy[dt%4]
@@ -39,5 +39,5 @@ else :
             dt += 1
             i += dx[dt%4]
             j += dy[dt%4]
-    # while문이 끝난 후 인덱스를 보정해 출력        
+    # while문이 끝난 후 인덱스를 보정해 출력
     print(j+1, i+1)
