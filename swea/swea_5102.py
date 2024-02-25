@@ -16,7 +16,7 @@ def BFS (S, G, node):
         for i in adj_lst[tc] :      # 인접 리스트를 만들었으니 2차원 리스트 내부를 순회합니다.
             if visit[i] == 0 :      # 거리가 0이다 = 아직 방문한 적이 없다.
                 q.append(i)
-                visit[i] = visit[tc] +1 # 거리에 관한 정보가 담깁니다.
+                visit[i] = visit[tc] + 1 # 거리에 관한 정보가 담깁니다.
     return 0
 
 

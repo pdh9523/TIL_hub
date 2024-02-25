@@ -20,4 +20,3 @@ for i in range(t) :
                         sum += test_list[y_idx][x_idx] # pang이 4라면 4방향 돌려서 총 16개의 값이 더해지는 방식
             sum_list.append(sum) # sum_list에 담고 max 값 추출
     print(f"#{i+1} {max(sum_list)}")
-# 남의 코드 뺏은거니까 이 방식 몇 번 더 써보기
