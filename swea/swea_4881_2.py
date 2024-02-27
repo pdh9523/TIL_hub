@@ -1,28 +1,26 @@
-def backtrack(idx = 0, sums=0):
-    global min_value
+# 재귀함수
+def backtrack(i, cnt):
+    global min_sum
 
-    if idx == size :
-
-        if min_value > sums :
-            min_value = sums
-    
-    elif sums >= min_value:
+    if i == N:
+        if min_sum > cnt:
+            min_sum = cnt
+    elif cnt > min_sum:
         return
-    
-    else :
-        for i in range(idx,size):
-            a,b = visit[i],visit[idx]
-            a,b = b,a
-            backtrack(idx+1, sums+test_list[idx][visit[idx]])
-            a,b= b,a
-            
-t = int(input())
+    else:
+        for j in range(N):
+            if visited[j] == 0:
+                visited[j] = 1
+                backtrack(i + 1, cnt + num[i][j])   # 다음줄로 넘어감
+                visited[j] = 0
 
-for i in range(t):    
-    size = int(input())
-    test_list = [list(map(int,input().split())) for _ in range(size)]
-    visit = list(range(size))
-    min_value = float("inf")
+T = int(input())
+for t in range(1, T + 1):
+    N = int(input())
+    num = [list(map(int, input().split())) for _ in range(N)]
 
-    backtrack()
-    print(f"#{i+1} {min_value}")
+    visited = [0] * N
+    min_sum = float('inf')
+    backtrack(0, 0)
+
+    print(f'#{t} {min_sum}')
