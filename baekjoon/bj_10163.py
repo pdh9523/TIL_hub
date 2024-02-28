@@ -11,8 +11,17 @@ for k in range(1,t+1):
         for jdx in range(j,j+j_length):
             board[idx][jdx] = k
 
+counts = [0] * t 
+
 for a in range(1,t+1):
     output = 0 
     for b in range(1001):
         output += board[b].count(a)
-    print(output)
+
+for b in range(1001):
+    for c in range(1001):
+        for a in range(1,t+1):
+            if board[b][c] == a :
+                counts[a-1] += 1
+                
+print(*counts, sep="\n")
