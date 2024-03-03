@@ -1,4 +1,3 @@
-# 그래도 아직 DFS 쓰고 있으니까
 def DFS(value, count) :
     global min_value
     start = [value]

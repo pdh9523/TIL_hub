@@ -10,4 +10,4 @@ test_case = int(input())
 
 for i in range(test_case) :
     n,m= map(int,input().split())
-    print(fac(m) // (fac(m-n) * fac(n)))
+    print(fac(m) // (fac(m-n) * fac(n)))        # 다리는 mCn
