@@ -9,9 +9,10 @@ def click(gen, n, lst):     # gender, number, list
             w += n
     else :
         i = 0
-        while 0 <= n-i-1 < len(lst) and 0 <= n+i-1 < len(lst) :
-            if lst[n-i-1] == lst[n+i-1]:
-                lst[n-i-1] = lst[n+i-1] = abs(lst[n+i-1]-1)
+        n -= 1
+        while 0 <= n-i < len(lst) and 0 <= n+i < len(lst) :
+            if lst[n-i] == lst[n+i]:
+                lst[n-i] = lst[n+i] = abs(lst[n+i]-1)
                 i +=1
             else :
                 break
