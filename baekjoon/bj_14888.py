@@ -16,6 +16,7 @@ def backtrack(idx, result):
             # 그 외에는 eval 로 계산하기
             else :
                 backtrack(idx+1, eval(f"{result}{cmd[item]}{numbers[idx+1]}"))
+                # result에 eval로 계산한 값을 넣어 백트래킹
             command[item] += 1
 
 
