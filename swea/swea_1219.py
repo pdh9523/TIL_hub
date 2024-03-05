@@ -1,3 +1,6 @@
+import sys
+sys.stdin = open("input/1219.txt")
+
 for _ in range(10) :    # 테케 10개
     t, test_case = map(int,input().split()) 
 
