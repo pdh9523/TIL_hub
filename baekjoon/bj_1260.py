@@ -5,7 +5,6 @@ for _ in range(M):
     graph[a].append(b)
     graph[b].append(a)
 
-
 stack = [V]                                         # DFS - stack
 visit = [0] * (N+1)                                 # visit : 방문 여부
 DFS = [V]                                           # DFS : 방문 경로
