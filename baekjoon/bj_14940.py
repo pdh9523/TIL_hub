@@ -27,5 +27,10 @@ while q :
                 visit[di][dj] = visit[i][j] + 1
                 q.append((di,dj))
 
+for i in range(N):
+    for j in range(M):
+        if visit[i][j] == 0 and maze[i][j] == 1:
+            visit[i][j] = -1
+            
 for vst in visit:
     print(*vst)
