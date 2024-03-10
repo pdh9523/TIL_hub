@@ -15,5 +15,5 @@ arr = list(enumerate(map(int,input().split())))
 ans = set()
 backtrack()
 
-for answer in sorted(ans):
+for answer in ans:
     print(*answer)
