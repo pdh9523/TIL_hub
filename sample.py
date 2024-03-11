@@ -1,4 +1,6 @@
-a = {1:1, 2:1}
-a[1] += 1
-a[2] += 2 
-print(a)
+for i in range(4):
+    print(1)
+    if i == 3:
+        continue
+else :
+    print(4)
