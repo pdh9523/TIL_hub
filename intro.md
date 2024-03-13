@@ -123,3 +123,122 @@ HTTP 요청을 처리하고 해당 요청에 대한 응답을 반환. MTV의 V, 
 ### `test.py`
 프로젝트 테스트 코드를 작성하는 곳
 * 수정 과정에서 수정할 일 없음
+
+## Django Template System
+데이터 표현을 제어하면서, 표현과 관련된 부분을 담당한다.
+
+## Django Template Language
+Template에서 조건, 반복, 변수 등의 프로그래밍적 기능을 제공하는 시스템
+
+### `Variable`
+render함수의 세번째 인자로 딕셔너리 데이터를 사용한다.
+
+딕셔너리 key에 해당하는 문자열이 template에서 사용 가능한 변수명이 된다.
+
+`.`을 사용하여 변수 속성에 접근할 수 있다.
+```py
+def index(request):
+  context = {
+    'name' : 'name'
+  }
+  return render(request, 'articles/index.html', context)
+```
+```html
+  <body>
+    <h1>Hello, {{ name }}</h1>
+  </body>
+```
+
+### `Filters`
+표시할 변수를 수정할 때 사용 `변수 | 필터`
+
+연결이 가능하며 일부 필터는 인자를 받기도 한다. 
+
+약 60개의 built-in filters를 제공.
+
+### `Tags`
+반복 또는 논리를 수행하여 제어 흐름을 만든다.
+
+일부 태그는 시작과 종료 택그가 필요하다.
+
+약 24개의 built-in template tags를 제공.
+
+### `comments`
+
+DTL에서의 주석을 담당한다.
+
+## 템플릿 상속
+1. 페이지의 공통 요소를 포함하고,
+2. 하위 템플릿이 재정의 할 수 있는 공간을 정의하는
+기본 skeleton 템플릿을 작성하여 상속 구조를 구축
+
+### `extneds tag`
+자식 템플릿이 부모 템플릿을 확장한다는 것을 알림
+
+부모 템플릿의 block tag 부분을 작성할 수 있다.
+
+### `block tag`
+하위 템플릿에서 재정의 할 수 있는 블록을 정의한다.
+
+상위 템플릿에서 작성하며, 이 영역 이외에는 자식 템플릿에 상속되어 중복을 제거한다. 
+
+블록의 부분에 이름을 작성하여 어떤 블록에 작성하는지 표시할 수 있다.
+
+## HTML form
+
+HTML form은 HTTP 요청을 서버에 보내는 가장 편리한 방법이다.
+
+### `form`
+사용자로부터 할당된 데이터를 서버로 전송하는 것으로 웹에서 사용자 정보를 입력하는 여러 방식 등을 제공한다. 
+
+- `action` : 입력 데이터가 전송될 URL을 지정한다. 만약 이 속성을 지정하지 않으면 데이터는 현재 form이 있는 페이지의 URL로 보내진다.
+
+- `method` : 데이터를 어떤 방식으로 보낼 것인지 정의한다. 즉, 데이터의 HTTP request methods (GET, POST)를 지정한다.
+
+### `input`
+사용자의 데이터를 입력 받을 수 있는 요소로, type 속성 값에 다라 다양한 유형의 입력 데이터를 받는다.
+
+### `name`
+입력한 데이터에 붙이는 이름으로, 데이터를 제출했을 때 서버는 name 속성에 설정된 값을 통해서만 사용자가 입력한 데이터에 접근할 수 있음
+
+### Query String Parameters
+사용자의 입력 데이터를 URL 수조에 파라미터를 통해 서버로 보내는 방법
+
+문자열은 앰퍼샌드`&`로 연결된 `key=value`쌍으로 구성되며, 기본 URL과는 물음표로 구분된다.
+`naver.com/search.naver?key=value&key=value`
+
+### HTTP request 객체
+view 함수의 첫번째 인자로 받는 request는
+
+form으로 전송한 데이터 뿐만 아니라 모든 요청 관련 데이터가 담겨있다.
+
+`request.GET.get('message')`를 통해 form의 데이터를 가져올 수 있다.
+
+
+
+## DTL 주의사항
+python처럼 일부 프로그래밍 구조를 사용할 수 있지만 명칭을 그렇게 설계 했을 뿐이지 python 코드로 실행되는 것이 아니며 python 과는 관련 없음
+
+프로그램이적 로직이 아니라 표현을 위한 것임을 명심할 것. 프로그래밍적 로직은 되도록 view 함수에서 작성 및 처리할 수 있으니 굳이 여기저기서 필터를 사용할 필요는 없음
+
+## URL dispatcher
+URL 패턴을 정의하고 해당 패턴이 일치하는 요청을 처리할 view 함수를 연결(매핑)
+
+현재 URL 관리의 문제점은, 탬플리스이 많은 부분이 중복되고, URL의 일부만 변경되는 상황이라면 계속해서 비슷한 URL과 템플릿을 작성해 나가야 할까?
+
+### `Variable Routing` 
+URL 일부에 변수를 포함시키는 것으로, 변수는 view 함수의 인자로 전달할 수 있다.
+
+`<path_converter : variable_name>` 방식으로 작성할 수 있다.
+```py
+path('articles/<int:num>/', views.detail)
+```
+
+## Trailing Slashes
+Django는 URL 끝에 '/'가 없다면 자동으로 붙임
+
+기술적 측면에서 네트워크는 /가 있는 것과 없는 것을 구분한다.
+
+그래서 Django는 검색 엔진이 혼동하지 않게 하기 위해 무조건 붙이는 것을 선택
+
+물론 모든 프레임 워크가 이렇게 동작하는 것은 아니다 
