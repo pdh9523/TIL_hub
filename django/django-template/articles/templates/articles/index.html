@@ -1,0 +1,9 @@
+{% extends "articles/base.html" %}
+{% comment %}
+중복을 제거하는 것이 상속의 목적이므로,
+! 를 쳐서 나오는 html의 기본 세팅은 extends를 통해 상속해 필요 없고,
+block과 endblock 사이에 추가적으로 넣기만 하면 된다.
+{% endcomment %}
+{% block content %}
+  <h1>안녕하세요 {{name}} </h1>
+{% endblock content %}
