@@ -19,7 +19,6 @@ for h in range(H):                                  # h : 높이 정보
             if key[1] == 1:
                 q.append([i,key[0], h])             # 저장 방식은 i , j , h
 
-
 # 토마토 이동 방향 : 위 아래(h열 +/- 1), 델타(같은 h열 내에서 델타탐색)
                 
 max_value = 0
@@ -27,7 +26,7 @@ visit = [[[0]*H for _ in range(M)] for _ in range(N)]
 
 while q:                                                                    # q 를 통한 bfs
 
-    i,j,h = q.popleft()                                                     
+    i,j,h = q.popleft()
     for dr in range(3):
         dh = h + dz[dr]
         di = i 
@@ -50,5 +49,4 @@ for box in tomatoes:                # 토마토 박스 뭉치
         if 0 in tomato:             # 박스 안에 토마토가 안익었으면
             exit(print(-1))         # -1
 else :                          
-    print(max_value)                # 아니면 0 
-
+    print(max_value)                # 아니면 0
