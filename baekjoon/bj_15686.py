@@ -24,7 +24,7 @@ for i in range(N):
         elif key[1] == 2:                   # 2 : 치킨집
             chicken.append((i,key[0]))
             
-chicken = combinations(chicken,M)           # 백트래킹? 귀찮습니다. 
+chicken = combinations(chicken,M)           # 백트래킹? 귀찮습니다.
 min_value = float('inf')
 for t in chicken:
     min_value = min(min_value,dist(home,t))
