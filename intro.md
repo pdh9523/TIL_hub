@@ -242,3 +242,105 @@ Django는 URL 끝에 '/'가 없다면 자동으로 붙임
 그래서 Django는 검색 엔진이 혼동하지 않게 하기 위해 무조건 붙이는 것을 선택
 
 물론 모든 프레임 워크가 이렇게 동작하는 것은 아니다 
+
+# Django URLs
+
+## URL dispatcher 
+URL 패턴을 정의하고 해당 패턴이 일치하는 요청을 처리할 view 함수를 연결 (매핑)
+
+### App URL mapping
+각 앱에 URL을 정의하는 것으로 프로젝트와 각 앱이 URL을 나누어 관리를 편하게하기 위함
+
+
+## 2번째 앱 pages 생성 후 발생할 수 있는 문제
+view 함수 이름이 같거나 같은 패턴의 URL 주소를 사용하게 되는 경우 복잡해질 수 있음. 그래서 URL을 각자 app에서 관리하게 할 수 있다.
+
+### `include()`
+프로젝트 내부 앱들의 URL을 참조할 수 있도록 매핑하는 함수
+
+URL의 일치하는 부분까지 잘라내고, 남은 문자열 부분은 후속 처리를 위해 include된 URL로 전달
+
+## url 구조 변경에 따른 문제점
+기존 `articles/` 주소가 `articles/index/`로 변경됨에 따라 해당 주소를 사용하는 몯느 위치를 찾아가 변경해야한다. 
+
+### Naming URL patterns
+URL에 이름을 지정하는 것으로, path 함수의 name인자를 정의해서 사용한다.
+
+### URL 이름 지정 후 남은 문제
+articles 앱의 url 이름과 pages 앱의 url 이름이 같은 상황
+
+단순히 이름만으로 완벽하게 분리할 수 없기 때문에, 이름에 성을 붙일 수 있다.
+
+```html
+<!--articles/urls.py -->
+app_name = 'articles'
+path('index/', views.index, name='index')
+<!-- html -->
+{% url 'articles:index' %}
+```
+
+
+# Django Model
+DB의 테이블을 정의하고 데이터를 조작할 수 있는 기능들을 제공한다. Django의 테이블 구조를 설계하는 청사진.
+
+```python
+class Article(odes.Model):
+  title = models,CharField(max_length=10)
+  content = modles.TextField()
+```
+
+`django.db.modls` 모듈의 `Model`이라는 부모 클래스를 상속 받음
+
+`Model`은 `model`에 관련된 모든 코드가 이미 작성되어있는 클래스로, 개발자는 가장 중요한 테이블 구조를 어떻게 설계할지에 대한 코드만 작성하도록 하기 위한 것 
+
+(상속을 활용한 프레임워크의 기능 제공)
+
+1. 클래스 변수명 : 테이블의 각 필드 이름
+2. `model Field` 클래스 : 테이블 필드의 데이터 타입
+3. `model Field` 클래스의 키워드 인자(필드 옵션) : 테이블 필드의 제약조건 관련 설정
+
+## Migrations
+`model`클래스의 변경사항을 DB에 최종 반영하는 방법
+
+### Migrations 과정
+
+`model class` -> `python manage.py makemigrations` -> `migrations` -> `python manage.py migrate` -> `db`
+
+### 이미 생성된 테이블에 필드를 추가해야 한다면?
+
+이미 기존 테이블이 존재하기 때문에 필드를 추가할 대 필드의 기본 값 설정이 필요하다.
+
+1번은 현재 대화를 유지하면서 직접 기본 값을 입력하는 방법
+
+2번은 현재 대화에서 나간 후 models.py에 기본 값 관련 설정을 하는 방법
+
+추가하는 필드의 기본 값을 입력해야 하는 상황에서, 날짜 데이터이기 때문에 직접 입력하기보다는 Django가 제안하는 기본 값을 사용하는 것을 권장
+
+아무것도 입력하지 않고 enter를 누르면 Django가 제안하는 기본 값으로 설정됨
+
+migration 과정 종류 후 2번째 migration 파일이 생서됨을 확인할 수 있음.
+
+이처럼 Django는 설계도를 쌓아가면서 추후 문제가 생겼을 시 복구하거나 되돌릴 수 있도록 설계함
+
+## Model Field
+
+DB 테이블의 필드를 정의하며, 해당 필드에 저장되는 데이터 타입과 제약조건을 정의
+
+### `CharField()`
+길이의 제한이 있는 문자열을 넣을 때 사용한다. 필드의 최대 길이를 결정하는 max_length는 필수 인자
+
+### `TextField()`
+글자 수가 많을 때 사용
+
+### `DateTimeField()`
+날짜와 시간을 넣을 때 사용
+
+<!-- 빈출 -->
+- `auto_now` : 데이터가 저장될 때마다 자동으로 현재 날짜시간을 저장
+- `auto_now_add` :데이터가 처음 생성될 때만 자동으로 현재 날짜시간을 저장 
+<!-- 빈출 -->
+
+# Admin site
+
+## Automatic admin interface
+Django는 추가 설치 및 설정 없이 자동으로 관리자 인터페이스를 제공한다. 데이터 확인 및 테스트 등을 진행하는데 매우 유용하다. 
