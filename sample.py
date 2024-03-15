@@ -1,6 +1,1 @@
-for i in range(4):
-    print(1)
-    if i == 3:
-        continue
-else :
-    print(4)
+print(*sorted(list(map(int,input().split()))))
