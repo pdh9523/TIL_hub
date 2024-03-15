@@ -1,11 +1,11 @@
-N = list(input())
-M = list(input())
+N, M = list(input()), list(input())
+lenn,lenm = len(N), len(M)
 
-lenn,lenm=len(N),len(M)
+DP = [0] * lenm         # DP의 각 인덱스를 M의 원소라 치고
 
-n,m = 0,0
-
-while n != lenn and m != lenm :
-    if N[n] == M[m] :
-        n,m = n+1, m+1
-    
+for i in range(lenn):
+    cnt = 0 
+    for j in range(lenm):
+        if cnt < DP[j]: cnt = DP[j]
+        elif N[i] == M[j]: DP[j] = cnt+1
+print(max(DP))

@@ -1,7 +1,3 @@
-# import sys 
-# from collections import deque
-
-# input = sys.stdin.readline
 
 # N, M = int(input()), int(input())
 
@@ -65,3 +61,33 @@
 
 ### 이것도 메모리 초과 ㅋㅋㅋㅋㅋ
 
+import sys 
+from collections import deque
+
+input = sys.stdin.readline
+
+# 입력단계
+N,M = int(input()), int(input())
+adj_lst = [list(map(int,input().split())) for _ in range(N)]
+city = list(map(lambda x : int(x)-1, input().split()))
+
+
+visit = [0] * N
+
+q = deque([city[0]])
+
+visit[city[0]] = 1
+
+while q :
+    s = q.popleft()
+
+    for idx, item in enumerate(adj_lst[s]):
+        if item and not visit[idx] :
+            visit[idx] = 1
+            q.append(idx)
+
+for i in city:
+    if not visit[i] :
+        exit(print("NO"))
+else :
+    print("YES")
