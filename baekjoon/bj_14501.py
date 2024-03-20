@@ -1,6 +1,9 @@
+import sys
+input = sys.stdin.readline
+
 N = int(input())
 
-DP = [0]*(N+6)                                      # 상담은 최대 5일, 첫 날 표시용 +1 해서 +6
+DP = [0]*(N+51)                                      # 상담은 최대 5일, 첫 날 표시용 +1 해서 +6
 
 for day in range(1,N+1):
     T,P = map(int,input().split())                  # T : 소요일,  P : 가치
