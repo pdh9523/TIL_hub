@@ -1,19 +1,20 @@
 import sys
 
+input = sys.stdin.readline
+
+
 N,M = map(int,input().split())
 
-test_list = [(list(map(int,sys.stdin.readline().strip("\n").split()))) for _ in range(N)]
+arr = [list(map(int,input().split())) for _ in range(N)]
 
-# 복잡도 최대 1024*1024*100000
-## 전처리를 해야한다.
-### 0,0 부터 해당 좌표까지의 합을 구한 후 거기서 계산하는 방식으로 전환
+DP = [[0]*(N+1) for _ in range(N+1)]
 
+for i in range(1,N+1):
+    for j in range(1,N+1):
+        DP[i][j] = DP[i][j-1] + DP[i-1][j] - DP[i-1][j-1] + arr[i-1][j-1]
 
-
-for _ in range(M) :
-    x1, y1, x2, y2 = map(int, sys.stdin.readline().strip("\n").split())
-    output = 0 
-    for i in range(y1-1,y2) :
-        for j in range(x1-1, x2) :
-            output += test_list[i][j]
-    print(output)
+for _ in range(M):
+    x1,y1,x2,y2 = map(int,input().split())
+    x1 -=1 
+    y1 -=1
+    print(DP[x2][y2] - DP[x2][y1] - DP[x1][y2] + DP[x1][y1])

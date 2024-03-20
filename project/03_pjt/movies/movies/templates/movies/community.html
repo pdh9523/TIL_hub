@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+
+{% block base %}
+
+<h1 class="text-center m-5">Community</h1>
+
+  <div class="container">
+    <div class="row">
+    <aside class="col-12 col-lg-2">
+    {% comment %} 여기는 List Group {% endcomment %}
+      <ul class="list-group">
+        <li class="list-group-item">Box Office</li>
+        <li class="list-group-item">Movies</li>
+        <li class="list-group-item">Genres</li>
+        <li class="list-group-item">Actors</li>
+      </ul>
+    </aside>
+
+    {% comment %} 여기는 커지면 테이블, 작으면 일반 {% endcomment %}
+    <section class="d-none d-lg-block col-10">
+      {% comment %} 커지면 테이블 {% endcomment %}
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">영화 제목</th>
+            <th scope="col">글 제목</th>
+            <th scope="col">작성자</th>
+            <th scope="col">작성 시간</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Greate Movie title</th>
+            <td>Best Movie Ever</td>
+            <td>user</td>
+            <td>1 minutes ago</td>
+          </tr>
+          <tr>
+            <th scope="row">Greate Movie title</th>
+            <td>Movie best</td>
+            <td>user</td>
+            <td>1 minutes ago</td>
+          </tr>
+          <tr>
+            <th scope="row">Greate Movie title</th>
+            <td>Movie best</td>
+            <td>user</td>
+            <td>1 minutes ago</td>
+          </tr>
+          <tr>
+            <th scope="row">Greate Movie title</th>
+            <td>Movie best</td>
+            <td>user</td>
+            <td>1 minutes ago</td>
+          </tr>
+          <tr>
+            <th scope="row">Greate Movie title</th>
+            <td>Movie best</td>
+            <td>user</td>
+            <td>1 minutes ago</td>
+          </tr>
+          <tr>
+            <th scope="row">Greate Movie title</th>
+            <td>Movie best</td>
+            <td>user</td>
+            <td>1 minutes ago</td>
+          </tr>
+          <tr>
+            <th scope="row">Greate Movie title</th>
+            <td>Movie best</td>
+            <td>user</td>
+            <td>1 minutes ago</td>
+          </tr>
+          <tr>
+            <th scope="row">Greate Movie title</th>
+            <td>Movie best</td>
+            <td>user</td>
+            <td>1 minutes ago</td>
+          <tr>
+            <th scope="row">Greate Movie title</th>
+            <td>Movie best</td>
+            <td>user</td>
+            <td>1 minutes ago</td>
+          </tr>
+          </tr>
+
+        </tbody>
+      </table>
+    
+    </section>
+
+    {% comment %} 작으면 일반 {% endcomment %}
+    <section class="d-block d-lg-none col-12" >
+      <hr class="mt-2">
+      <p class="users"> <span class="fs-4">best movie ever</span> <span>user</span></p>
+      <p class="fs-5">Great Movie Title</p>
+      <p class="fs-6">1 minutes ago</p>
+      <hr class="mt-2">
+      <p class="users"> <span class="fs-4">best movie ever</span> <span>user</span></p>
+      <p class="fs-5">Great Movie Title</p>
+      <p class="fs-6">1 minutes ago</p>
+      <hr class="mt-2">
+      <p class="users"> <span class="fs-4">best movie ever</span> <span>user</span></p>
+      <p class="fs-5">Great Movie Title</p>
+      <p class="fs-6">1 minutes ago</p>
+      <hr class="mt-2">
+
+
+    </section>
+
+    </div>      
+  </div>
+
+
+
+
+
+<div>
+{% comment %} 여기는 pagination {% endcomment %}
+<nav aria-label="Page navigation example" class="col m-5">
+  <ul class="pagination">
+    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+  </ul>
+</nav>
+</div>
+
+
+
+{% endblock base %}
