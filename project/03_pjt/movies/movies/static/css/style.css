@@ -1,0 +1,29 @@
+.clear {
+  height : 65px;
+}
+
+.contents {
+  display: flex;
+  justify-content: center;
+  align-items:center;
+}
+.card-img-top {
+  width : 350px;
+  height: 550px;
+  object-fit: cover;
+}
+.card {
+  width : 350px;
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.users {
+  display: flex;
+  justify-content: space-between;
+
+}
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap')
