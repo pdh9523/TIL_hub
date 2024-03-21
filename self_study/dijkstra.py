@@ -1,15 +1,15 @@
 import heapq
 
-n,r = map(int,input().split())                  # n : 정점의 개수 r : 노드의 개수
+N,M = map(int,input().split())                  # N : 정점의 개수 M : 노드의 개수
 
-graph = [[] for _ in range(n+1)]                # 인접 그래프
+graph = [[] for _ in range(N+1)]                # 인접 그래프
 
-for _ in range(r):
+for _ in range(M):
     a,b,l = map(int,input().split())            # a : 출발 b : 도착 l : 거리
     graph[a].append((b,l))
     graph[b].append((a,l))
 
-distance = [float('inf')] * (n+1)               # distance : 거리
+distance = [float('inf')] * (N+1)               # distance : 거리
 
 start = 1                                       # start : 초기값
 distance[start] = 0                             # 시작점은 거리가 0 
@@ -20,6 +20,7 @@ while q:
     if distance[now] >= dist_now:               # 현재 누적된 거리가 거리 리스트에 기록된 거리보다 짧을 경우
         for next, dist_next in graph[now]:      # 인접 그래프에서 next와 next의 거리를 추출해서
             cost = dist_now + dist_next         # cost : 현재 거리 + 다음 거리
+
             if cost < distance[next]:           # 지금 위치에서 가는 방법이 더 짧은 경우
                 distance[next] = cost           # 값 변경
                 heapq.heappush(q,(cost,next))   # (cost,next) q에 푸시
