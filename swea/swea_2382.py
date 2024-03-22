@@ -1,48 +1,40 @@
-# 1 상 2 하 3 좌 4 우
-from pprint import pprint 
+# 상 1 하 2 좌 3 우 4
 
-for idx in range(int(input())):
+dx = [0,-1,1,0,0]
+dy = [0,0,0,-1,1]
+reverse = [0,2,1,4,3]
 
-    N,M,K = map(int,input().split())
-    lab = [[[] for _ in range(N)] for _ in range(N)]
+for tc in range(int(input())):
+    N,M,K = map(int,input().split())    # N : 크기 M : 시간 K : 원소 수
 
-    for _ in range(K):
-        a,b,c,d = map(int,input().split())
-        lab[a][b].append([c,d,0])     # 미생물 수, 이동방향, 0은 체커
+    data = [list(map(int,input().split())) for _ in range(K)]
+    for _ in range(M):                          # M : 시간변화
+        tmp = dict()                            # tmp : 25번 줄부터 중복 확인을 위한 임시 딕셔너리
+        for idx in range(K):
+            i,j, num, dr = data[idx]            # i : x좌표  j : y 좌표, num : 미생물 수, dr : 방향
 
-    for r in range(M):  # M 만큼의 로테이션 동안
-        pprint(lab)
-        for i in range(N):
-            for j in range(N):
-                while lab[i][j] :
-                    item = lab[i][j].pop()
-                    if item[2] == r :           # 다들 움직여야되니까 한칸씩 다 움직이는거 체크
-                        if item[1] == 1 :
-                            di, dj = i-1, j
-                        elif item[1] == 2:
-                            di, dj = i+1,j
-                        elif item[1] == 3:
-                            di, dj = i,j-1
-                        elif item[1] == 4:
-                            di, dj = i, j+1
+            if num :
+                di = i + dx[dr]
+                dj = j + dy[dr]
+                data[idx][0], data[idx][1] = di,dj
+                if not ( 1 <= di < N-1 and 1 <= dj < N-1):  # 벽에 박은 경우
+                    data[idx][2] //= 2                      # 반으로 줄이고
+                    data[idx][3] = reverse[dr]              # 뒤집기 
+                
+            if (di,dj) not in tmp :
+                tmp[(di,dj)] = [idx,num]        # 인덱스와 미생물 수를 저장
+            else :
+                ind,nums = tmp[(di,dj)]         # 기존의 인덱스와 미생물 수를 비교하여
+                if num > nums :                 # 지금꺼가 더 크면
+                    tmp[di,dj] = [idx,num]
+                    data[idx][2] += data[ind][2]
+                    data[ind][2] = 0            # 위에 for문을 K로 둬서 계속 순회해야 하니 0 으로 두고 예외처리
+                else :
+                    data[ind][2] += data[idx][2]
+                    data[idx][2] = 0 
 
-                        if 0 < di < N-1 and 0 < dj < N-1 :
-                            lab[di][dj].append([item[0],item[1],item[2]+1])
-                        else :
-                            if item[1] %2 == 0:
-                                item[1] -=1
-                            else :
-                                item[1] += 1
-                            lab[di][dj].append([item[0]//2, item[1], item[2]+1])
-        # # 합치기
-        # sums=0
-        # max_value = 0
-        # dr = 0 
-        # for i in range(N):
-        #     for j in range(N):
-        #         if len(lab[i][j]) > 1 :
-        #             for ind in range(len(lab[i][j])) :
-        #                 if lab[i][j][ind][0] > max_value :
-        #                     dr = lab[i][j][ind][1]
-        #                 sums += lab[i][j][ind][0]
-        #             lab[i][j]=[[sums,dr,lab[i][j][0][2]]]
+                
+    ans = 0
+    for arr in data:
+        ans += arr[2]
+    print(f"#{tc+1} {ans}")
