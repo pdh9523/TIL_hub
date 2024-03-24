@@ -19,7 +19,7 @@ while q :
 
     if now % 2 == 0 and now//2 not in visit :
         q.append(now//2)
-        visit[now//2] = visit[now]
+        visit[now//2] = visit[now] 
     if now+1 not in visit and 0 <= now+1 <= 100000:
         visit[now+1] = visit[now] + 1
         q.append(now+1)

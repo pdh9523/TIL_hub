@@ -6,4 +6,4 @@ for idx in range(t):
     for char in num:
         print(f"{int(char, base=16):04b}", end="")
     print()
-    
+
