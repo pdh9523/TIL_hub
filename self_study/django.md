@@ -344,3 +344,51 @@ DB 테이블의 필드를 정의하며, 해당 필드에 저장되는 데이터 
 
 ## Automatic admin interface
 Django는 추가 설치 및 설정 없이 자동으로 관리자 인터페이스를 제공한다. 데이터 확인 및 테스트 등을 진행하는데 매우 유용하다. 
+
+# ORM Object-Relational-Mapping
+객체 지향 프로그래밍 언어를 사용하여 호환되지 않는 유형의 시스템 간 데이터를 변환하는 기술
+
+## QuerySet API
+ORM에서 데이터를 검색, 필터링, 정렬 및 그룹화 하는 데 사용하는 도구
+
+API를 사용하여 SQL이 아닌 Python 코드로 데이터를 처리
+
+`Article.objects.all()`
+
+### Query
+데이터베이스에 특정한 데이터를 보여달라는 요청을 말한다.
+
+"쿼리문을 작성한다." 는 말은 즉, 원하는 데이터를 얻기 위해 데이터베이스에 요청을 보낼 코드를 작성한다는 뜻으로, 파이썬으로 작동한 코드가 ORM에 의해 SQL로 변환되어 데이터베이스에 전달되며, 데이터베이스의 응답 데이터를 ORM이 QuerySet이라는 자료 형태로 변환하여 우리에게 전달한다.
+
+### Queryset
+Django ORM을 통해 만들어진 자료형이자 데이터베이스에게서 전달 받은 객체 목록(데이터 모음)으로, 순회가 가능한 데이터로써 1개 이상의 데이터를 부럴와 사용할 수 있다.
+
+단, 데이터베이스가 단일한 객체를 반환할 때는 QuerySet이 아닌 모델의 인스턴스로 반환된다. 
+
+### QuerySet API는 python의 모델 클래스와 인스턴스를 활용해 DB에 데이터를 저장, 조회, 수정, 삭제하는 것이다.
+
+
+## 실습 사전 준비
+`pip install ipython`
+`pip install django-extensions`
+```py
+# settings.py
+
+INSTALLED_APPS = [
+  'django_extensions',
+]
+```
+## Django shell
+Django 환경 안에서 실행되는 python shell으로, 입력하는 QuerySet API 구문이 Django 프로젝트에 영향을 미친다. 
+
+### Django shell 실행
+`python manage.py shell_plus`
+
+# READ
+
+## 대표적인 조회 메서드
+### QuerySet 반환
+- `all()`
+- `filter()`
+### instance 반환
+- `get()`
