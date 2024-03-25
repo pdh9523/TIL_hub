@@ -1,10 +1,12 @@
 a = int(input())
-b = list(map(int,input().split()))
+arr_a = list(map(int,input().split()))
 
-c = int(input())
-d = list(map(int,input().split()))
+b = int(input())
+arr_b = list(map(int,input().split()))
 
-test_list = []
-for i in d :
-    test_list.append(b.count(i))
-print(*test_list)
+dic = {}
+for item in arr_a:
+    dic[item] = dic.get(item, 0) + 1
+
+for i in arr_b:
+    print(dic.get(i,0), end=" ")

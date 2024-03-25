@@ -1,11 +1,9 @@
-import sys
-a=int(input())
-test_case = set(map(int,sys.stdin.readline().split()))
-c=int(input())
-compare_case = list(map(int,sys.stdin.readline().split()))
+_ = int(input())
+N = list(map(int,input().split()))
+_ = int(input())
+M = list(map(int,input().split()))
 
-for i in compare_case :
-    if ({i} | test_case) - test_case :
-        print(0, end=" ")
-    else : 
-        print(1, end=" ")
+dic = {i : 1 for i in N}
+
+for item in M:
+    print(dic.get(item,0))
