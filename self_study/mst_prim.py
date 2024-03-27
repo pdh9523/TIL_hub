@@ -27,6 +27,7 @@ hq = [(0,start)]
 visit = [False for _ in range(N)]
 
 ans = 0
+
 while hq :
     dist_now, now = heapq.heappop(hq)
 

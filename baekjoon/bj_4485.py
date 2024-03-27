@@ -14,6 +14,7 @@ while size :
     q=[[cave[0][0],0,0]] # idx 0 : 거리, 1 : i, 2 : j
     distance[0][0] = cave[0][0]
 
+    # 다익스트라 
     while q :
         dist_now, i,j = heappop(q)
 
