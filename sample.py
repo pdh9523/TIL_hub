@@ -1,8 +1,7 @@
-a = {1,2}
-b = {2,1}
+xlist =[1]
+ylist= [2]
+zlist =[3]
 
-print(a==b)
-
-a = (1,2)
-b = (2,1)
-print(a==b)
+for curlist in xlist, ylist, zlist:
+    print(1)
+    print(curlist)
