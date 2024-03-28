@@ -1,7 +1,6 @@
-xlist =[1]
-ylist= [2]
-zlist =[3]
-
-for curlist in xlist, ylist, zlist:
-    print(1)
-    print(curlist)
+while 1:
+    data = list(map(str, input().split('.')))
+    print(data)
+    data.pop()
+    if data == ['']:
+        exit()
