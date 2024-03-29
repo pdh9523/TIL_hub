@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>반갑다. {{user}}.</h2>
+  <h1>INDEX PAGE</h1>
+  <hr>
+  <a href="{% url "accounts:login" %}">[LOGIN]</a>
+  <form action="{% url "accounts:logout" %}" method="POST">
+    {% csrf_token %}
+    <input type="submit"value="[LOGOUT]">
+  </form>
+  <form action="{% url "articles:index" %}"> 
+    <input type="hidden" name="is_hidden" value="False">
+    <input type="submit" value="비공개 글 숨기기">
+  </form>
+  <form action="{% url "articles:index" %}"> 
+    <input type="hidden" name="is_hidden" value="True">
+    <input type="submit" value="비공개 글 boy기">
+  </form>
+
+  <ul>
+  <a href="{% url "articles:create" %}">CREATE</a>
+  {% for article in articles %}
+  <li>
+    <p>{{ article.pk}}번째 글</p>
+    <p>{{ article.title}}</p>
+    <p>{{ article.is_hidden}}</p>
+    <hr>
+  </li>
+  {% endfor %}
+</ul>
+
+{% endblock content %}
