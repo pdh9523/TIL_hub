@@ -16,6 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from accounts import views
 # app별로, 본인들의 기능과 연관된 요청을 따로 관리
 # 처음 app 생성 시에는, django가 별도로 app.urls를 제공하지 않는다.
 # 그럼? 만들면 된다. 
@@ -23,4 +24,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('articles/', include('articles.urls')),
     path('accounts/', include('accounts.urls')),
+    path('<int:user_pk>/password/', views.change_password, name='change_password'),
 ]
