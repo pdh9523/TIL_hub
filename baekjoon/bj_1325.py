@@ -5,28 +5,36 @@ input = sys.stdin.readline
 
 N,M = map(int,input().split())
 
-tree = [[] for _ in range(N+1)]
+graph =[[] for _ in range(N+1)]
 
 for _ in range(M):
-    A,B = map(int,input().split())
-    tree[B].append(A)
+    a,b = map(int,input().split())
+    graph[b].append(a)
 
-result= [0]
+ans = []
+max_value = 0
 
 for i in range(1,N+1):
-    q = deque([i])
-    visit = [0] * (N+1)
-    count = 0
+    visit = [False] * (N+1)
+
+    q = deque([(i)])
+    visit[i] = True
+    cnt = 0 
     while q :
-        a = q.popleft()
-        visit[a] = 1
-        count += 1
-        for item in tree[a] :
-            if visit[item] == 0 :
-                q.append(item)
-    result.append(count)
-k = max(result)
-ans = enumerate(result)
-for key,value in ans :
-    if value == k :
-        print(key, end=" ")
+        now = q.popleft()
+
+        for next in graph[now]:
+            if not visit[next] :
+                visit[next] = True
+                q.append(next)
+                cnt += 1
+    
+
+    if cnt > max_value :
+        ans = [i]
+        max_value = cnt
+
+    elif cnt == max_value :
+        ans.append(i)
+
+print(*ans)
