@@ -1,5 +1,5 @@
 from django import forms
-from .models import Article
+from .models import Article, Comment
 '''
     Form : 모델에 대한 정보가 없는 Form을 위한 클래스
 
@@ -50,3 +50,10 @@ class ArticleForm(forms.ModelForm):
 
 
         }
+
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ('content',)
+

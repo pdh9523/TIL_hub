@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>DETAIL</h1>
+  <h2>{{article.pk}} 번째 글 </h2>
+  <hr>
+  <p> 제목 : {{ article.title }} </p>
+  <p> 내용 : {{ article.content }} </p>
+  <p> 작성일 : {{ article.created_at }} </p>
+  <p> 수정일 : {{ article.updated_at }} </p>
+  {% comment %} <form action="{% url "articles:update" article.pk %}" method = "POST">
+    {% csrf_token %}
+    <input type="submit" value="EDIT">
+  </form> {% endcomment %}
+  <hr>
+  <h3>댓글 작성</h3>
+  <form action="{% url "articles:create_comments" article.pk %}" method="POST">
+    {% csrf_token %}
+    {{comment_form.as_p}}
+    <input type="submit" value = "댓글작성">
+  </form>
+  <h3>댓글 목록</h3>
+  <ul>
+    {% for comment in comments %}
+      <li>
+        <p>
+          {{comment.content}}
+          <form action="{% url "articles:delete_comments" article.pk comment.pk %}" method ="POST" style="display : inline">
+            {% csrf_token %}
+            <input type="submit" value="댓글 삭제">
+          </form>
+        </p>
+      </li>
+    {% endfor %}
+  </ul>
+  <hr>
+  <a href="{% url "articles:index" %}">[BACK]</a>
+</body>
+</html>
