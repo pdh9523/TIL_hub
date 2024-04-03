@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from .forms import ArticleForm
-from .models import Article
+from .forms import ArticleForm, CommentForm
+from .models import Article, Comment
 # Create your views here.
+
 def index(request):
     # articles = Article.objects.order_by('-pk')
     is_hidden = request.GET.get('is_hidden')
@@ -40,3 +41,49 @@ def create(request):
         'form' : form,
     }
     return render(request, 'articles/create.html', context)
+
+def delete(request, pk):
+    article = Article.objects.get(pk=pk)
+    article.delete()
+    return redirect('article:index')
+
+
+def detail(request,pk):
+    article = Article.objects.get(pk=pk)
+    # READ - 특정 게시글에 작성된 모든 댓글 조회 (Article -> Comment 역참조)
+    comments = article.comment_set.all()
+
+    # CREATE - 
+    comment_form = CommentForm()
+
+    context = {
+        'article' : article,
+        'comment_form' : comment_form,
+        'comments' : comments,
+    }
+    return render(request, 'articles/detail.html', context)
+
+def create_comments(request, article_pk):
+    article = Article.objects.get(pk=article_pk)
+    comments = article.comment_set.all()
+    comment_form = CommentForm(request.POST)
+
+    if comment_form.is_valid():
+        ## commit : SAVE 하는데, DB에 저장하지 않고 인스턴스만 일단 반환해줌
+        comment = comment_form.save(commit=False)
+        comment.article = article
+        comment.save()
+        return redirect('articles:detail', article.pk)
+    
+    context = {
+        'article' : article,
+        'comment_form' : comment_form,
+        'comments' : comments,
+    }
+    return render(request, 'articles/detail.html', context)
+
+def delete_comments(request, article_pk, comment_pk):
+    # 어떤 댓글을 삭제할건지 조회
+    comment = Comment.objects.get(pk=comment_pk)
+    comment.delete()
+    return redirect('articles:detail', article_pk)

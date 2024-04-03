@@ -35,7 +35,7 @@
     </form>
   {% for article in articles %}
   <li>
-    <p>{{ article.pk}}번째 글</p>
+    <a href="{% url "articles:detail" article.pk %}">{{article.pk}}번째 글</a>
     <p>{{ article.title}}</p>
     <p>{{ article.is_hidden}}</p>
     <hr>
