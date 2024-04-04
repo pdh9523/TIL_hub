@@ -1,36 +1,22 @@
-# ## 괄호 조건이 중첩 괄호 사용 불가
-# ### 코드 다시 짜야함 ###
+def backtrack(idx, result):
+    global ans
+    if N == idx :
+        ans = max(ans,int(result))
+
+    # 1+2+3+4
+    # 괄호를 안쓰는 경우 result : 1, char : 2 + 3 >> join  >> 1*2+3
+    if idx+2 <= N :
+        backtrack(idx+2, str(eval(''.join([result] + char[idx:idx+2]))))
+    # 괄호를 쓰는 경우 result : 1 + , char : (2+3) >> eval 5 >> join >> 1 * 5
+    if idx+4 <= N :
+        backtrack(idx+4, str(eval(''.join([result, char[idx]] + [str(eval(''.join(char[idx+1:idx+4])))]))))
 
 
-# def backtrack(result,idx = 0):
-#     global max_value, calc
-#     if idx == lenc :
-#         max_value = max(max_value,result[0])
-    
-#     target = len(calc)
-#     for i in range(target):
-#         tmp = eval(f'{result[i]}{calc[i]}{result[i+1]}')
-#         print(tmp, result)
-#         temp1 = result[:]
-#         temp2 = calc[:]
-#         result.pop(i)
-#         result.pop(i)
-#         calc.pop(i)
-#         result.insert(i,tmp)
-#         backtrack(result,idx+1)
-#         result = temp1
-#         calc = temp2
-# N = int(input())
 
-# char = list(input())
+N = int(input())
+char = list(input())
 
-# nums = [int(char.pop(0))]
-# calc = [ ]
-# for i in range(0,N-1,2):
-#     calc.append(char[i])
-#     nums.append(int(char[i+1]))
-# lenc = len(calc)
-# max_value = -float('inf')
-# backtrack(nums)
+ans = -float('inf')
 
-# print(max_value)
+backtrack(1,char[0])
+print(ans)

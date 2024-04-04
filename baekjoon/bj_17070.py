@@ -1,3 +1,4 @@
+from pprint import pprint 
 # from collections import deque
 # from time import time
 # st = time()
@@ -96,4 +97,6 @@ for i in range(1,N):
             DP[i][j][0] = DP[i][j-1][0] + DP[i][j-1][2]
             DP[i][j][1] = DP[i-1][j][1] + DP[i-1][j][2]
 
+
+pprint(DP)
 print(sum(DP[-1][-1]))

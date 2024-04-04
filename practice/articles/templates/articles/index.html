@@ -36,8 +36,10 @@
   {% for article in articles %}
   <li>
     <a href="{% url "articles:detail" article.pk %}">{{article.pk}}번째 글</a>
-    <p>{{ article.title}}</p>
-    <p>{{ article.is_hidden}}</p>
+    <p>제목 : {{article.title}}</p>
+    <p>내용 : {{article.content}}</p>
+    <p>작성자 : {{article.user}}</p>
+    <p>숨김여부 : {{article.is_hidden}}</p>
     <hr>
   </li>
   {% endfor %}

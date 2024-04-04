@@ -31,7 +31,9 @@ def create(request):
         # 항상 모든 필드에 대한 정보를 받는건 아니고
         # 사용자가 보내온 데이터가 정의된 field에 삽입하기 적절하면 저장한다.
         if form.is_valid():
-            form.save()
+            article = form.save(commit = False)
+            article.user = request.user
+            article.save()
             return redirect('articles:index')
 
     else :
@@ -63,6 +65,34 @@ def detail(request,pk):
     }
     return render(request, 'articles/detail.html', context)
 
+@login_required
+def update(request, pk):
+    article = Article.objects.get(pk=pk)
+    if request.user == article.user:
+        if request.method == "POST": 
+            form = ArticleForm(request.POST, instance=article)
+            if form.is_valid():
+                form.save()
+                return redirect('articles:detail', article.pk)    
+    else :
+        return redirect('articles:index')
+    
+    form = ArticleForm(instance=article)
+    
+    context = {
+        'form' : form,
+        'article' : article,
+    }
+    return render(request, 'articles/update.html', context)
+
+@login_required
+def delete(request,pk):
+    article = Article.objects.get(pk=pk)
+    if request.user == article.user :
+        article.delete()
+    return redirect('articles:index')
+
+@login_required
 def create_comments(request, article_pk):
     article = Article.objects.get(pk=article_pk)
     comments = article.comment_set.all()
@@ -72,6 +102,7 @@ def create_comments(request, article_pk):
         ## commit : SAVE 하는데, DB에 저장하지 않고 인스턴스만 일단 반환해줌
         comment = comment_form.save(commit=False)
         comment.article = article
+        comment.user = request.user
         comment.save()
         return redirect('articles:detail', article.pk)
     
@@ -82,8 +113,10 @@ def create_comments(request, article_pk):
     }
     return render(request, 'articles/detail.html', context)
 
+@login_required
 def delete_comments(request, article_pk, comment_pk):
     # 어떤 댓글을 삭제할건지 조회
     comment = Comment.objects.get(pk=comment_pk)
-    comment.delete()
+    if request.user == comment.user:
+        comment.delete()
     return redirect('articles:detail', article_pk)
