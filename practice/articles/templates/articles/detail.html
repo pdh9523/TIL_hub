@@ -13,10 +13,17 @@
   <p> 내용 : {{ article.content }} </p>
   <p> 작성일 : {{ article.created_at }} </p>
   <p> 수정일 : {{ article.updated_at }} </p>
-  {% comment %} <form action="{% url "articles:update" article.pk %}" method = "POST">
+  <p> 작성자 : {{ article.user }} </p>
+  {% if request.user == article.user %}
+  <form action="{% url "articles:update" article.pk %}" method = "POST">
     {% csrf_token %}
     <input type="submit" value="EDIT">
-  </form> {% endcomment %}
+  </form>
+  <form action="{% url "articles:delete" article.pk %}" method = "POST">
+    {% csrf_token %}
+    <input type="submit" value="DELETE">
+  </form>
+  {% endif %}
   <hr>
   <h3>댓글 작성</h3>
   <form action="{% url "articles:create_comments" article.pk %}" method="POST">
@@ -29,11 +36,13 @@
     {% for comment in comments %}
       <li>
         <p>
-          {{comment.content}}
+          {{comment.user}} : {{comment.content}}
+          {% if request.user == comment.user %}
           <form action="{% url "articles:delete_comments" article.pk comment.pk %}" method ="POST" style="display : inline">
             {% csrf_token %}
             <input type="submit" value="댓글 삭제">
           </form>
+          {% endif %}
         </p>
       </li>
     {% endfor %}
