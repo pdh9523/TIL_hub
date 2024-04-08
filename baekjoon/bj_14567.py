@@ -23,7 +23,7 @@ for i in range(1,N+1):
 while q :
     now, d = q.popleft()
     for next in graph[now]:
-        degree[next]-=1
+        degree[next] -= 1
         if degree[next] == 0 :
             q.append((next,d+1))
             DP[next] = d+1

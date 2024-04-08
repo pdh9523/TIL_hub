@@ -40,6 +40,7 @@
     <p>내용 : {{article.content}}</p>
     <p>작성자 : {{article.user}}</p>
     <p>숨김여부 : {{article.is_hidden}}</p>
+    <p>좋아요 : {{article.like_users.all|length}}개</p>
     <hr>
   </li>
   {% endfor %}

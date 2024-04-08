@@ -34,7 +34,7 @@ class ArticleForm(forms.ModelForm):
     class Meta:
         model = Article
         fields = '__all__'
-        exclude = ('user',)
+        exclude = ('user','like_users')
         '''
             내가 가진 필드들 중 어떤 이름을 가진 필드들의 속성만 간단하게 수정하고 싶어.
             필드 각 이름은 고유값이니까, 

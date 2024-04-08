@@ -11,6 +11,7 @@ from django.conf import settings
 
 class Article(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    like_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_articles')
     title = models.CharField(max_length=100)
     content = models.TextField()
     is_hidden = models.BooleanField()
