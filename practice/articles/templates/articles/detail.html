@@ -14,6 +14,15 @@
   <p> 작성일 : {{ article.created_at }} </p>
   <p> 수정일 : {{ article.updated_at }} </p>
   <p> 작성자 : {{ article.user }} </p>
+  <p> 좋아요 : {{ like_count }} 개</p>
+  <form action="{% url "articles:likes" article.pk %}" method="POST">
+    {% csrf_token %}
+    {% if request.user in article.like_users.all %}
+      <input type="submit" value = "좋아요 취소">
+    {% else %}
+      <input type="submit" value = "좋아요">
+    {% endif %}
+  </form>
   {% if request.user == article.user %}
   <form action="{% url "articles:update" article.pk %}" method = "POST">
     {% csrf_token %}
@@ -25,6 +34,8 @@
   </form>
   {% endif %}
   <hr>
+
+
   <h3>댓글 작성</h3>
   <form action="{% url "articles:create_comments" article.pk %}" method="POST">
     {% csrf_token %}

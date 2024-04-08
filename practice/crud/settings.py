@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'accounts',
     'articles',
+    'hospitals',
     'django_extensions',
     'django.contrib.admin',
     'django.contrib.auth',   # 얘가 바로 유저 모델 클래스를 가지고 있습니다.

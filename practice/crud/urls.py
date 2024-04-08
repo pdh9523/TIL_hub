@@ -22,6 +22,7 @@ from accounts import views
 # 그럼? 만들면 된다. 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    # path('hospitals/', include('hospitals.urls')),
     path('articles/', include('articles.urls')),
     path('accounts/', include('accounts.urls')),
     path('<int:user_pk>/password/', views.change_password, name='change_password'),
