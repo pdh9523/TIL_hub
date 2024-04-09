@@ -13,7 +13,7 @@
   <p> 내용 : {{ article.content }} </p>
   <p> 작성일 : {{ article.created_at }} </p>
   <p> 수정일 : {{ article.updated_at }} </p>
-  <p> 작성자 : {{ article.user }} </p>
+  <p> 작성자 : <a href="{% url "accounts:profile" article.user %}">{{ article.user }} </a></p>
   <p> 좋아요 : {{ like_count }} 개</p>
   <form action="{% url "articles:likes" article.pk %}" method="POST">
     {% csrf_token %}

@@ -1,6 +1,6 @@
 from django.db import models
-
 from django.contrib.auth.models import AbstractUser
+
 # 내장 유저 클래스를 import 합니다. 
 # 기설정된 유저 클래스는 별도 설정 없이 사용할 수 있어 간편하지만
 # 개발자가 직접 수정할 수 없는 문제가 존재합니다.
@@ -18,4 +18,13 @@ from django.contrib.auth.models import AbstractUser
 # 단, User 모델 대체 작업은 프로젝트의 모든 migrations 혹은 첫 migrate를 실행하기 전에 이 작업을 마쳐야 합니다.
 
 class User(AbstractUser):
-    pass
+    '''
+    관계
+    - 참조 : 내가 팔로우 하는 사람들 (followings)
+    - 역참조 : 나를 팔로우 한 사람들 (followers)
+    '''
+    
+    # symmetrical : 대칭 (내가 팔로우 한다고 해서 상대가 팔로우 하는건 아니니까)
+
+    followings = models.ManyToManyField('self', symmetrical=False, related_name='followers')
+

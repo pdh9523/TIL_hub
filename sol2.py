@@ -54,3 +54,16 @@ while q :
 
 pprint(visit)
 print(sum(visit[-1][-1]))
+
+
+
+'''
+input
+4 2
+1 1 1 30
+1 10 -10 -10
+1 10 10 1
+1 1 10 10
+
+
+'''
