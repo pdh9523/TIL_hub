@@ -5,6 +5,9 @@
 <hr>
 {% if request.user.is_authenticated %}
   <h2>반갑다. {{user}}.</h2>
+  <a href="{% url "accounts:profile" user.username%}">
+    내 프로필
+  </a>
   <form action="{% url "accounts:logout" %}" method="POST">
     {% csrf_token %}
     <input type="submit"value="[LOGOUT]">
