@@ -392,3 +392,125 @@ Django 환경 안에서 실행되는 python shell으로, 입력하는 QuerySet A
 - `filter()`
 ### instance 반환
 - `get()`
+
+
+
+
+## REST API 
+### API, Application Programming Interface
+두 소프트웨어가 서로 통신할 수 있게 하는 메커니즘으로, 클라이언트-서버처럼 다른 프로그램에서 요청과 응답을 받을 수 있도록 만든 체계
+
+### REST, Representational State Transfer
+API 서버를 개발하기 위한 일종의 소프트웨어 설계 "방법론" (규칙X)
+
+### REST에서 자원을 사용하는 법 3가지
+1. 자원의 "식별"
+   - URI
+2. 자원의 "행위"
+   - HTTP Methods (CRUD)
+3. 자원의 "표현"
+   - JSON데이터, 궁극적으로 표현되는 데이터 결과물
+
+
+## 자원의 식별
+
+## URI
+  인터넷에서 리소스를 식별하는 문자열 (URL의 상위개념)
+## URL
+  웹에서 주어진 리소스의 주소
+
+`http://www.naver.com:80/index.html?key1=value1&key2=value2#SomewhereInTheDoc`
+
+--- 
+### Schema (or Protocol) 
+`http://`
+
+브라우저가 리소스를 요청하는 데 사용해야하는 규약
+
+URL의 첫 부분은 브라우저가 어떤 규약을 사용하는지를 나타냄
+
+기본적으로 웹은 http를 요구하며 다른 프로토콜도 존재한다.
+
+---
+### Domain Name 
+`www.naver.com`
+
+요청중인 웹 서버를 나타냄
+
+---
+### Port 
+`:80`
+
+웹 서버의 리소스에 접근하는 데 사용되는 기술적인 문으로, 표준 포트만 작성 시 생략할 수 있다.
+
+---
+### Path  
+`index.html`
+
+웹 서버의 리소스 경로로, 
+
+초기에는 `index.html`과 같이 실제 파일이 위치한 물리적 위치를 나타냈지만, 
+
+오늘날은 실제 위치가 아닌 추상화된 형태의 구조를 표현한다. 
+
+---
+### Parameters 
+`?key1=value1&key2=value2`
+
+웹 서버에 제공하는 추가적인 데이터로
+
+? 부터 시작해서, &기호로 구분되는 key-value 쌍 목록을 말한다.
+
+서버는 리소스를 응답하기 전에 이러한 파라미터를 사용하여 추가 작업을 수행할 수 있음
+
+---
+
+### Anchor  
+`#SomewhereInTheDoc`
+
+일종의 북마크를 나타내며, 브라우저에 해당 지점에 있는 콘텐츠를 표시
+
+fragment identifier(부분 식별자)라고 부르는 # 이후 부분은 서버에 전송되지 않는다. 
+
+---
+
+## 자원의 행위
+
+### HTTP Request Methods, HTTP verbs
+리소스에 대한 행위를 정의
+
+1.  POST    `(C)`
+    - 데이터를 지정한 리소스에 제출
+    - 서버의 상태를 변경
+2.  GET `(R)`
+    - 서버에 리소스의 표현을 요청
+    - GET을 사용하는 요청은 데이터만 검색해야 함
+3.  PUSH  ` (U)`
+    - 요청한 주소의 리소스를 수정
+4.  DELETE `(D)`
+    - 지정된 리소스를 삭제
+
+---
+
+### HTTP response status codes
+특정 HTTP 요청이 성공적으로 완료 되었는지 여부를 나타냄
+
+## 자원의 표현
+지금까지 Django서버는 사용자에게 페이지(html)만 응답하고 있었음
+
+하지만 서버가 응답할 수 있는 것은 페이지 뿐만 아니라 다양한 데이터 타입을 응답할 수 있음. 이 중에서도 REST API는 JSON타입으로 응답하는 것을 권장한다. 
+
+이렇게되면 Django는 더 이상 Template 부분에 대한 역할을 담당하지 않게 되며, 본격적으로 Front - Back 이 분리되어 구성된다.
+
+
+## DRF, Django REST Framework
+Django에서 Restful API 서버를 쉽게 구축할 수 있도록 도와주는 오픈소스 라이브러리
+
+### Serialization, 직렬화
+여러 시스템에서 활용하기 위해 데이터 구조나 객체 상태를 나중에 재구성할 수 있는 포맷으로 변환하는 과정
+
+### Serializer
+Serialization을 진행하여 Serialized Data를 반환해주는 클래스
+
+### ModelSerializer
+Django 모델과 연결된 Serializer 클래스로, 일반 Serializer와 달리 사용자 입력 데이터를 받아 자동으로 모델 필드에 맞추어 Serialization을 진행
