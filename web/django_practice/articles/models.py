@@ -10,6 +10,7 @@ from django.conf import settings
     파이썬 객체 다루는 방법을 따른다.
 '''
 
+
 # 작성자 정보를 담기 위한 1:N 관계
 # User Model - accounts.User 문자열 직접 작성해도 문제는 없다.
 class Article(models.Model):
