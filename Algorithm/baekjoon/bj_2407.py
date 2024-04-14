@@ -1,13 +1,13 @@
-import math
+from fractions import Fraction
 
-n,m = map(int,input().split())
-if m > n/2 :
-    m = n-m
-output = 1
-for i in range(m) :
-    output *= n-i
+def fac(n):
+    if n == 0 :
+        return 1
+    return n * fac(n-1)
 
-for j in range(1,m+1) :
-    output /= j
+def comb(n,m):
+    return Fraction(fac(n), (fac(m)*fac(n-m)))
 
-print(round(output))
+
+n,m=map(int,input().split())
+print(comb(n,m))

@@ -2,18 +2,16 @@ import sys
 input = sys.stdin.readline
 
 for _ in range(int(input())):
-    arr = [list(map(int,input().split())) for _ in range(int(input()))]
-
-    arr.sort()
-    
-    DP = [[1] * len(arr) for _ in range(len(arr))]
-
-    for i in range(len(arr)):
-        tmp = i
-        for j in range(i, len(arr)):
-            if arr[tmp][1] > arr[j][1]:
-                DP[i][j] = DP[i][tmp] +1
-                tmp = j
-            else :
-                DP[i][j] = DP[i][j-1]
-    print(max([max(x) for x in DP]))
+    N = int(input())
+    arr = sorted([list(map(int,input().split())) for _ in range(N)])
+    # 앞 번호를 기준으로 정렬되어있으니
+    cnt = 0
+    mini = arr[0][1]
+    # 뒷 번호를 기준으로 가장 작은 값부터 순회하면서
+    for i in range(N):
+        # 뒷번호가 더 작으면 갱신 후 cnt += 1
+        if mini >= arr[i][1]:
+            mini = arr[i][1]
+            cnt += 1
+            
+    print(cnt)
