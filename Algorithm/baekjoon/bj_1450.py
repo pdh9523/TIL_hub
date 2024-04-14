@@ -42,16 +42,16 @@ for a in tmp2 :
         continue
     # 4. 그 이외의 경우에서 이분탐색을 진행한다. 
     start = 0
-    end = len(tmp1)-1
+    end = len(tmp1)
 
-    while start <= end :
+    while start < end :
         mid = (start+end) // 2
 
         if tmp1[mid] + a > C :
-            end = mid-1
+            end = mid
         else :
             start = mid+1
-    # 이분 탐색이 완료된 경우 end +1 값을 ans에 더해준다.
-    ans += end + 1
+    # 이분 탐색이 완료된 경우 end 값을 ans에 더해준다.
+    ans += end
 
 print(ans)
