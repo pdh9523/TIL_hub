@@ -1,4 +1,6 @@
-import math
+import sys
+
+input = sys.stdin.readline
 
 a = int(input())
 test_list = []
