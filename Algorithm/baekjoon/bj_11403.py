@@ -1,29 +1,17 @@
-from collections import deque 
+N = int(int(input()))
 
+graph = [list(map(lambda x : int(x) if x == "1" else float('inf') , input().split())) for _ in range(N)]
 
-N = int(input())
+for k in range(N):
+    for i in range(N):
+        for j in range(N):
+            graph[i][j] = min(graph[i][j], graph[i][k] + graph[k][j])
 
-graph = [[] for _ in range(N)]
+    print()
+    for i in graph: 
+        print(*i)
+    print()
+ans = [[0 if graph[i][j]==float('inf') else 1 for j in range(N)] for i in range(N)]
 
-for i in range(N):
-    arr = list(map(int,input().split()))
-    for j in range(N) :
-        if arr[j] == 1: 
-            graph[i].append(j)
-            graph[j].append(i)
-
-visit = [[0]*N for _ in range(N)]
-
-for i in range(N):
-    q = deque([i])
-
-    while q :
-        
-        now = q.popleft()
-
-        for next in graph[now]:
-            if not visit[now][next] : 
-                visit[now][next] = 1
-                visit[next][now] = 1
-                q.append(next)
-print(visit)
+for i in ans :
+    print(*i)
