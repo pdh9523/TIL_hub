@@ -14,6 +14,8 @@ for i in range(lenn):
             DP[j][0] = cnt+1
             DP[j][1] = tmp+N[i]
 a = max(DP, key = lambda x: x[0])
+
+print(DP)
 print(a[0])
 if a[1]:
     print(a[1])

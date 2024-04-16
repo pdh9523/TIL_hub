@@ -8,24 +8,15 @@ for idx in range(7,-1,-1) :
         if len(char) > idx :
             position[idx].append(char[-idx-1])
 
-nums = list(range(10))
-result = {}
-
+counter = {}
 for i in range(7,-1,-1):
-    counter = {}
-
     for alpha in position[i]:
-        counter[alpha] = counter.get(alpha,0)+1
-
-    for tmp in sorted(counter.keys(), key= lambda x : -counter[x]):
-        if tmp not in result :
-            result[tmp] = nums.pop()
-
-for j in range(8):
-    position[j] = list(map(lambda x: result[x], position[j]))
-position = list(map(sum,position))
-
+        counter[alpha] = counter.get(alpha,0)+10**i
+        
+num = 9
 ans = 0
-for i in range(8) :
-    ans += position[i] * 10 ** i
+for i in sorted(list(counter.values()), reverse=True):
+    ans += num * i
+    num -= 1
+   
 print(ans)

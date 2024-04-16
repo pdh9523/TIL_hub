@@ -1,9 +1,17 @@
-t = int(input())
-for _ in range(t) :
+import sys
+
+input = sys.stdin.readline
+
+for _ in range(int(input())):
     a,b = map(int,input().split())
-    if a > b :
-        a ,b = b, a 
-    count = a
-    while a % count != 0 or b % count != 0 :
-        count -=1
-    print(int(a*b/count))
+    div = 2
+    c = 1
+    while a > 1 and b > 1 :
+        while a % div == 0 and b % div == 0 :
+            a,b = a//div, b//div
+            c *= div
+        if div >= a or div >= b :
+            break
+        
+        div +=1
+    print(a*b*c)
