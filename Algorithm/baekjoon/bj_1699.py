@@ -1,18 +1,15 @@
-from math import sqrt
-
 N = int(input())
-n = int(sqrt(N)) 
-DP = [0] * (n+1)
+DP = [float('inf')] * (N+1)
+sqr = []
+for i in range(1,N+1):
+    if i ** 2 <= N :
+        sqr.append(i**2)
+        DP[i**2] = 1
+    else :
+        break
 
-for i in range(1,n+1):
-    a = N
-    cnt = 0
-    while a > 0 :
-        target = i
-        while target**2 > a :
-            target -= 1
-        a -= target**2
-        cnt += 1
-    DP[i] = cnt
-
-print(min(DP[1:]))
+for i in range(1,N+1):
+    for num in sqr :
+        if i + num < N+1 :
+            DP[i+num] = min(DP[i+num],DP[i]+1)
+print(DP[-1])
