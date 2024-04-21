@@ -25,6 +25,7 @@ for _ in range(int(input())):
             q.append(i)                                         # q에 담아 순회를 준비한다.
             DP[i] = time[i]                                     # DP에 각 건물의 건설 소요 시간을 담아둔다.
 
+    print(degree)
     # 위상 정렬                
     while q :
         now = q.popleft()                                       
