@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .blue {
+      color : blue ;
+    }
+  </style>
+</head>
+<body>
+  <h1></h1>
+<button id = "btn">+</button>
+<input type="text", id="text-input">
+</body>
+<script>
+  const inputTag = document.querySelector('#text-input')
+  const h1Tag = document.querySelector('h1')
+  const btn = document.querySelector('#btn')
+
+  const inputHandler = function (event) {
+    h1Tag.textContent = event.currentTarget.value
+  }
+
+  const btnHandler = function (event) {
+   h1Tag.classList.toggle('blue')
+  }
+
+  inputTag.addEventListener('input', inputHandler)
+  btn.addEventListener('click', btnHandler)
+</script>
+</html>
