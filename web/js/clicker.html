@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <button id="btn">버-턴</button>  
+  <p>클릭횟수 : <span id="counter">0</span> </p>
+
+  <script>
+    let cntNum = 0
+
+    const btn = document.querySelector('#btn')
+    console.log(btn)
+    const clickHandler = function () { 
+      cntNum += 1
+
+      const spanTag = document.querySelector('#counter')
+      spanTag.textContent = cntNum
+
+    }
+    
+    btn.addEventListener('click',clickHandler)
+
+
+
+  </script>
+</body>
+
+</html>
