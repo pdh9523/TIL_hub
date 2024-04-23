@@ -1,17 +1,7 @@
-fibo = [0,1,1,2]
+N = int(input())
 
-t = int(input())
+fibo = [1,1]
+for i in range(N):
+    fibo.append((fibo[-1]+fibo[-2])%1000000007)
 
-
-i = 4
-while len(fibo) != t+1:
-    a = fibo[i-2]%1000000007
-    b = fibo[i-1]%1000000007
-    
-    if a+b in fibo : 
-        i = fibo.index(a+b)
-    else :
-        i += 1
-    fibo.append(a+b)
-
-print(fibo[t]%1000000007)
+print(fibo[-1])

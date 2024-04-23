@@ -56,34 +56,42 @@
 ###처음 생각했던 풀이 (양 점 사이 간선이 하나씩만 존재하는 경우 순회가 가능)
 
 import sys
-sys.setrecursionlimit(10**9)
+sys.setrecursionlimit(10**6)
+input = sys.stdin.readline
 
-N=int(sys.stdin.readline())
+N = int(input())
 
-myList=[]
+adjl=[ [*map(int,input().split())] for _ in range(N)]
 
-for i in range(N):
-    myList.append(list(map(int,sys.stdin.readline().rstrip().split())))
-
-graph={}
+graph = dict()
 
 for i in range(N):
-    graph[i]=[]
-    rowSum=0
+    graph[i] = []
+    tmp = 0
     for j in range(N):
-        for k in range(myList[i][j]):
-            rowSum+=1
+        for k in range(adjl[i][j]):
+            tmp += 1
             graph[i].append(j)
-    if rowSum%2==1:
-        print(-1)
-        sys.exit()
 
-def dfs(nowNode):
-    for i in graph[nowNode]:
-        if myList[nowNode][i]:
-            myList[nowNode][i]-=1
-            myList[i][nowNode]-=1
-            dfs(i)
-    print(nowNode+1,end=" ")
+    if tmp % 2 == 1:
+        exit(print(-1))
+stack = [0]
+ans = [] 
+def dfs():
+    now = stack.pop()
+    for next in graph[now]:
+        if adjl[now][next]:
+            adjl[now][next]-=1
+            adjl[next][now]-=1
 
-dfs(0)
+            stack.append(next)
+
+    ans.append(now+1)
+
+dfs()
+
+print(*ans)
+
+####
+
+왜_안풀림=None
