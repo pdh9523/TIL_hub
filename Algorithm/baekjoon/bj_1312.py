@@ -1,4 +1,8 @@
-a,b,c = map(int,input().split())
+A,B,N = map(int,input().split())
 
 
-print(1 / b)
+for _ in range(N):
+    A = (A%B) * 10
+    n = A//B
+    
+print(n)
