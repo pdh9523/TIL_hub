@@ -26,5 +26,4 @@ urlpatterns = [
     path('articles/', include('articles.urls')),
     path('accounts/', include('accounts.urls')),
     path('<int:user_pk>/password/', views.change_password, name='change_password'),
-    path('api/v1/', include('apis.urls')),
 ]
