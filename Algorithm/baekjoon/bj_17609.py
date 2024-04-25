@@ -5,11 +5,12 @@ for _ in range(int(input())):
     left, right = 0, len(text)-1
     check = 2
     while left < right : 
-
-        if text[left]==text[right]:
+# 재귀로 구성할 것 
+        if text[left] == text[right]:
             left+=1
             right-=1
             continue
+
         if check == 2 and text[left+1] == text[right]:
             check = 1
             left += 2
@@ -21,6 +22,7 @@ for _ in range(int(input())):
             left += 1
             right -= 2
             continue
+
         check = 0
         print(2)
         break
@@ -29,5 +31,3 @@ for _ in range(int(input())):
         print(1)
     elif check==2:
         print(0)
-
-        

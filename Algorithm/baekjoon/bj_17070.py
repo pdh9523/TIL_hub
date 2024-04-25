@@ -98,5 +98,4 @@ for i in range(1,N):
             DP[i][j][1] = DP[i-1][j][1] + DP[i-1][j][2]
 
 
-pprint(DP)
 print(sum(DP[-1][-1]))
