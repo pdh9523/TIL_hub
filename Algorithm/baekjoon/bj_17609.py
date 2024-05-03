@@ -1,33 +1,24 @@
-for _ in range(int(input())):
+import sys
 
-    text = input()
+input = sys.stdin.readline
 
-    left, right = 0, len(text)-1
-    check = 2
-    while left < right : 
-# 재귀로 구성할 것 
-        if text[left] == text[right]:
+
+def check(left, right, chk=0):
+
+    while left < right :
+        if text[left] != text[right] and chk == 0:
+            a = check(left+1, right, chk+1)
+            b = check(left, right-1, chk+1)
+            return min(a,b)
+
+        elif text[left] != text[right] and chk == 1:
+            return 2
+
+        else :
             left+=1
             right-=1
-            continue
+    return chk
 
-        if check == 2 and text[left+1] == text[right]:
-            check = 1
-            left += 2
-            right -= 1
-            continue
-
-        if check == 2 and text[left] == text[right-1]:
-            check = 1
-            left += 1
-            right -= 2
-            continue
-
-        check = 0
-        print(2)
-        break
-
-    if check==1:
-        print(1)
-    elif check==2:
-        print(0)
+for _ in range(int(input())):
+    text = input().strip()
+    print(check(0,len(text)-1))
