@@ -1,3 +1,5 @@
+# 인형 뽑기
+
 def solution(board, moves):
     answer = 0
     stack = []
