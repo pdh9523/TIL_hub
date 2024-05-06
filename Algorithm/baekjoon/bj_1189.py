@@ -1,5 +1,3 @@
-dr = (0,1),(1,0),(0,-1),(-1,0)
-
 def DFS(i,j,cnt=1):
     global ans
     
@@ -7,11 +5,10 @@ def DFS(i,j,cnt=1):
         if cnt == K:
             ans += 1
 
-    for dx,dy in dr :
+    for dx,dy in (0,1),(1,0),(0,-1),(-1,0) :
        di,dj = i+dx, j+dy
        if 0<=di<N and 0<=dj<M:
-          if visit[di][dj] : continue
-          if arr[di][dj] == "T" : continue
+          if visit[di][dj] or arr[di][dj] =="T" : continue
 
           visit[di][dj] = 1
           DFS(di,dj,cnt+1)
