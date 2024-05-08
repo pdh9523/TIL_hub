@@ -28,10 +28,8 @@ def union(x,y):
         elif rank[root_x] > rank[root_y]:
             parents[root_y] = root_x
 
-        else:
-    
-    # 다른 집합이면 합침
     if x<y :
         parents[y] = x
     else :
         parents[x] = y
+    # 다른 집합이면 합침
