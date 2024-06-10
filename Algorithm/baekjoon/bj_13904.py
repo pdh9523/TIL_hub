@@ -2,58 +2,26 @@ import sys
 input = sys.stdin.readline
 
 
-class queue() :
-    def __init__ (self,capacity) :
-        self.capacity = capacity
-        self.arr = [-1]*self.capacity
-        self.top = -1
-        self.first = 0
-
-    def push (self, item) :
-        self.top += 1
-        self.arr[self.top] = item
-
-    def front(self):
-        return self.arr[self.first]
-    
-    def back(self):
-        return self.arr[self.top]
-
-    def empty(self):
-        return self.first==self.top+1
-
-    def pop(self):
-        self.first += 1
-        return self.arr[self.first-1]
-    
-    def size(self):
-        return self.top-self.first+1
-
 N = int(input())
-
-q = queue(N)
-
+hw = []
 for _ in range(N):
-    order, *a = input().split()
-    if order == "push":
-        q.push(*a)
-    elif order == "pop":
-        if q.empty() :
-            print(-1)
-        else :
-            print(q.pop())
+    data = tuple(map(int,input().split()))
+    hw.append(data)
 
-    elif order == "size":
-        print(q.size())
-    elif order == "empty":
-        print(int(q.empty()))
-    elif order == "front":
-        if q.empty() :
-            print(-1)
+
+# 1. 큰 점수 부터 꺼내서 ans의 좌표에 넣어두기
+# 2. ans의 인덱스를 day로 생각해서 그보다 작은 곳에 숫자 넣기
+# 3. 넣어둔 수보다 더 큰 수가 들어오면 교체하기
+# 최대치가 1000개라서 ans 크기 지정
+### 최대치를 day의 최대값을 비교해서 만들 수도 있으나, 더 느림(44ms vs 36ms)
+ans = [0] * 1001
+hw.sort(key=lambda x : x[1], reverse=True)
+for d,score in hw :
+    while d>0:
+        if ans[d]>=score:
+            d-=1
         else :
-            print(q.front())
-    elif order == "back":
-        if q.empty() :
-            print(-1)
-        else :
-            print(q.back())
+            ans[d]=score
+            break
+print(sum(ans))
+# 근데 이게 왜 우선순위 큐임..? 어디서 쓸지 모르겠는데
