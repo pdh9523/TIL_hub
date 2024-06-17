@@ -8,6 +8,6 @@
 import Foundation
 
 let num = readLine()!.components(separatedBy : " ")
-
 let ans = (Int(num[0])!) * (Int(num[1])!-1)
 print(Int(ans)+1)
+

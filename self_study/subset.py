@@ -23,3 +23,10 @@ for element in test_list :
         subset.append(subset[i]+[element]) # 공집합에서 시작해서, 만들어진 각 값에 대해 값을 더해 새로운 리스트를 생성
         # [] 이면 []+1 해서 [1] //  [], [1] 이면 []+2, [1]+2 해서 [2],[1,2] -> [], [1], [2], [1,2]
 print(subset)
+
+from itertools import combinations
+
+test_list = [x for x in range(4)]
+subset = []
+for i in range(4+1):
+    subset.extend(list(combinations(test_list),i))
