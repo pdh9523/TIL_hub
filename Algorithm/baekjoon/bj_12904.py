@@ -1,5 +1,15 @@
-S,T=list(input()),list(input())
-while T!=S:
-    if T.pop()=="B": T=T[::-1]
-    if not T: exit(print(0))
-print(1)
+s,t = input(), input()
+answer = 0
+def sub(str1, target):
+  global answer
+  if len(str1) == len(target):
+    if target == str1:
+      answer = 1
+    return
+  if target[-1] == 'A':
+    sub(str1, target[:-1])
+  if target[0] == 'B':
+    sub(str1, target[:0:-1])
+
+sub(s, t)
+print(answer)
