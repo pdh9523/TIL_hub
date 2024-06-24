@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="root"></div>
+</body>
+<!-- import React -->
+<script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
+<!-- 바벨을 통해 react 문법으로 바꿔줌 -->
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+  const root = document.getElementById("root")
+
+  // 카운트를 담을 변수
+  let counter = 0
+  
+  function countUp() { 
+    counter = counter + 1
+    // 이런 식으로 만들면, 만들어진 가상돔을 수치가 업데이트 될 때마다 다시 렌더링 해줘야 한다.
+    render()
+  }
+
+  
+  function Container() {
+    return (
+    <div> 
+      <h3>Total clicks : {counter} </h3>
+      <button onClick={countUp}>Click Me</button>
+      </div>
+      )
+    }
+    
+  function render() {
+    ReactDOM.render(<Container />, root)
+  }
+
+  render()
+</script>
+  
+
+</html>

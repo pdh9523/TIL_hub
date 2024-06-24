@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="root"></div>
+</body>
+<!-- import React -->
+<script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
+<!-- 바벨을 통해 react 문법으로 바꿔줌 -->
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+  const root = document.getElementById("root")
+  
+  function App() {
+    const [minutes, setMinutes] = React.useState(0)
+
+    const onChange = (event) => {
+      setMinutes(event.target.value)
+    }
+
+    const reset = () => {
+      setMinutes(0)
+    }
+    return (
+    <div>
+    <h1>Super Converter</h1>
+    <label for="minutes">Minutes</label>
+    
+    <input 
+      value ={minutes}
+      id="minutes"
+      placeholder="Minutes" 
+      type="number" 
+      onChange={onChange}
+    />
+
+    <h4>You want to convert {minutes}</h4>
+
+    <label for="hours">Hours</label>
+    <input 
+      value = {Math.round(minutes/60)} 
+      id="hours" 
+      placeholder="Hours" 
+      type="number"
+      disabled
+    />
+    <button onClick={reset}>reset All</button>
+    </div>
+    )
+  }
+    
+
+  ReactDOM.render(<App />, root)
+</script>
+  
+
+</html>
