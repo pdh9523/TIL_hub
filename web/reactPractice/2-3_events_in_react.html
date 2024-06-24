@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="root"></div>
+</body>
+  <!-- import React -->
+  <script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
+
+  <script>
+    // Vue 에서 app 으로 사용하던 그것
+    const root = document.getElementById("root")
+    // 태그 생성
+    const h3 = React.createElement("h3", {
+      onMouseEnter: () => console.log("mouse Enter")
+    },"Hello, I'm a h3")
+
+    const button = React.createElement("button", {
+      onClick: () => console.log("i'm click")
+    }
+    , "Click me")
+
+    const container = React.createElement("div", null, [h3,button] )
+    ReactDOM.render(container, root);
+  </script>
+</html>
