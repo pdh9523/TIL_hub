@@ -1,5 +1,3 @@
-package bj_28702;
-
 import java.io.*;
 import java.util.*;
 
