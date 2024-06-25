@@ -1,5 +1,3 @@
-package swea_1231;
-
 import java.io.*;
 import java.util.*;
 
