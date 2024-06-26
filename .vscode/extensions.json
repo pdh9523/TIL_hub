@@ -1,5 +1,6 @@
 {
   "recommendations": [
-    "vue.volar"
+    "vue.volar",
+    "msjsdiag.vscode-react-native"
   ]
 }
