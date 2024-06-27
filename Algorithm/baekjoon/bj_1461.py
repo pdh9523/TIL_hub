@@ -1,39 +1,19 @@
 N,M = map(int,input().split())
+books = [*map(int,input().split())]
 
-# 음수 / 양수 나누기
-arr = [*map(int,input().split())]
-plus = []
-minus = []
-for i in arr :
-    if i > 0 : plus.append(i)
-    elif i < 0 : minus.append(-i)
-plus.sort(); minus.sort()
+plus, minus = [], []
+for book in books:
+    if book < 0: minus.append(-book)
+    else : plus.append(book)
 
-ans = 0 
+ans = 0
+maxv = 0
+for arr in plus,minus:
+    if not arr : continue
+    arr.sort(reverse=True)
+    maxv = max(maxv, arr[0])
+    for i in range(len(arr)):
+        if i%M==0:
+            ans += arr[i]*2
 
-while plus :
-    for i in range(M):
-        if plus : 
-            a=plus.pop()
-            if i == 0 :
-                tmp = a
-        else : break
-    ans += a
-
-    if plus :
-        ans += a
-
-ans += a
-
-while minus :
-    for i in range(M):
-        if minus : 
-            a=minus.pop()
-            if i == 0 :
-                tmp = a
-        else : break
-    ans += a
-
-    if minus :
-        ans += a
-print(ans)
+print(ans-maxv)

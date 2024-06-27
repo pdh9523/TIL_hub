@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-public class Main {
+public class swea_1231 {
     public static void inOrder(int[][] tree, String[] arr, int node) {
         if (tree[node][0]!=0) {
             inOrder(tree,arr,tree[node][0]);
