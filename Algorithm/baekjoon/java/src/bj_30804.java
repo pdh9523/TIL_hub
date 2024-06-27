@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-public class Main {
+public class bj_30804 {
     public static void main(String[] args) throws Exception {
         // 입력 초기 처리
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));

@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-public class Main {
+public class bj_10870 {
     private static Map<Integer, Integer> memo = new HashMap<>();
     public static void main(String[] args) throws Exception {
 

@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-public class Main {
+public class bj_2630 {
     static int white = 0;
     static int blue = 0;
     public static void main(String[] args) throws Exception {

@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-public class Main {
+public class bj_3109 {
     // dr 델타
     static int[][] dr = {
             {-1,1},
