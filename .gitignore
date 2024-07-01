@@ -1,6 +1,6 @@
 # Created by https://www.toptal.com/developers/gitignore/api/python,vue,vuejs,visualstudiocode,pycharm,intellij,java,swift,xcode,django,nextjs,react
 # Edit at https://www.toptal.com/developers/gitignore?templates=python,vue,vuejs,visualstudiocode,pycharm,intellij,java,swift,xcode,django,nextjs,react
-
+*.vscode
 ### Django ###
 *.log
 *.pot
