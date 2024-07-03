@@ -32,7 +32,7 @@ function App() {
       <input 
         onChange={onChange}
         value={keyword}
-        type="text" 
+        type="text"
         placeholder="Search here..." />
       <h1 
         className={styles.Title}> 
