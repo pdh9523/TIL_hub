@@ -1,5 +1,4 @@
 import sys
-
 input = sys.stdin.readline
 
 
@@ -7,9 +6,10 @@ def init_min(start,end,idx=1):
     if start == end :
         min_tree[idx] = arr[start]
     else :
-        mid = (start+end) // 2 
+        mid = (start+end) // 2
         min_tree[idx] = min(init_min(start,mid,idx*2), init_min(mid+1,end,idx*2+1) )
     return min_tree[idx]
+
 
 def find_min(start,end,idx,left,right):
 
@@ -21,6 +21,7 @@ def find_min(start,end,idx,left,right):
 
     mid = (start + end) // 2
     return min(find_min(start,mid,idx*2,left,right), find_min(mid+1,end,idx*2+1,left,right))
+
 
 
 def init_max(start,end,idx=1):
@@ -42,6 +43,7 @@ def find_max(start,end,idx,left,right):
 
     mid = (start + end) // 2
     return max(find_max(start,mid,idx*2,left,right), find_max(mid+1,end,idx*2+1,left,right))
+
 
 N,M = map(int,input().split())
 arr = [ int(input()) for _ in range(N) ]
