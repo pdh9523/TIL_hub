@@ -659,4 +659,6 @@ yarn-error.log
 /*.gcno
 **/xcshareddata/WorkspaceSettings.xcsettings
 
+.next
+
 # End of https://www.toptal.com/developers/gitignore/api/python,vue,vuejs,visualstudiocode,pycharm,intellij,java,swift,xcode,django,nextjs,react
