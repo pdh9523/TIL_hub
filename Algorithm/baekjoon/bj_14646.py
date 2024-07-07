@@ -5,7 +5,7 @@ res = [0]*(N+1)
 tmp,ans = 0,0
 
 for i in arr :
-    if res[i] == 0:
+    if ree s[i] == 0:
         res[i] = 1
         tmp += 1
     else :
