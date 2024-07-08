@@ -1,7 +1,7 @@
+"use client"
 // 이걸 적는다고 CSR이 되는건 아님.
 // 모든 component 는 우선적으로 SSR 되고
 // use client 를 적는 것은 CSR 도 같이 이루어진다는 것을 뜻함
-"use client"
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
