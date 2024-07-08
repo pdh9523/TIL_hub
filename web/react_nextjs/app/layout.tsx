@@ -1,10 +1,11 @@
 import { Metadata } from "next"
 import Nav from "../components/nav"
+import "../styles/global.css"
 
 export const metadata: Metadata = {
   title: {
     template: "%s | Next Movies",
-    default: "Loading..."
+    default: "Next Movies"
   }
 }
 
@@ -13,7 +14,6 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
     <html lang="ko">
       <body>
         <Nav />
-        <h6>I'm Layout</h6>
         {children}
       </body>
     </html>
