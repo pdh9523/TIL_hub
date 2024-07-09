@@ -29,7 +29,7 @@ def bfs(char):
 
         if arr[x][y] == "F":
             if (x,y) in data: ans = min(ans,data[(x,y)]+visit[x][y]-1)
-            else : data[(x,y)] = visit[x][y]-1
+            else: data[(x,y)] = visit[x][y]-1
 
         for dx,dy in dr:
             di,dj = x+dx, y+dy
