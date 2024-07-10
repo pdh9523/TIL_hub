@@ -5,12 +5,10 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
 import styles from "../styles/nav.module.css"
 
 export default function Nav() {
   const path = usePathname()
-  const [count, setCount] = useState(0)
 
   return (
     <nav className={styles.nav}>
