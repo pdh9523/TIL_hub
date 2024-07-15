@@ -5,9 +5,7 @@ class Trie:
     def insert(self, folders):
         now = self.root
         for folder in folders:
-            if folder not in now:
-                now[folder] = dict()
-            now = now[folder]
+            now = now.setdefault(folder,dict())
 
     def dfs(self, now, level=0):
         for nxt in sorted(now):
