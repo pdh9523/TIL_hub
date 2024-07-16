@@ -1,29 +1,26 @@
-const messageList = document.querySelector("ul")
-const messageForm = document.querySelector("form")
+const socket = io()
 
-const socket = new WebSocket(`ws://${window.location.host}`);
+const welcome = document.getElementById("welcome")
+const form = welcome.querySelector("form")
+const room = document.getElementById("room")
+room.hidden = true
 
-socket.addEventListener("open", () => {
-        console.log("connected to Server")
-})
+let roomName;
 
-socket.addEventListener("message", (message) => {
-    console.log("New Message:", message.data)
-})
-
-socket.addEventListener("close", () => {
-    console.log("socket closed")
-})
-
-setTimeout(() => {
-    socket.send("hello from the browser")
-}, 10000)
-
-function handleSubmit(event) {
-    event.preventDefault()
-    const input = messageForm.querySelector("input")
-    socket.send(input.value)
-    console.log(input.value)
-    input.value = ""
+function showRoom() {
+    welcome.hidden = true
+    room.hidden = false
+    const h3 = room.querySelector("h3")
+    h3.innerText = roomName
 }
-messageForm.addEventListener("submit", handleSubmit)
+
+function handleRoomSubmit(event) {
+    event.preventDefault()
+    const input = form.querySelector("input")
+    socket.emit("enter_room", input.value, showRoom)
+    roomName = input.value
+    input.value =  ""
+}
+
+
+form.addEventListener("submit", handleRoomSubmit)
