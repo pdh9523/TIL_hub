@@ -11,23 +11,30 @@ app.use("/public", express.static(__dirname+"/public"))
 app.get("/", (req,res) => res.render("home"))
 
 
-// it's http server
 const httpServer = http.createServer(app)
+// noinspection JSValidateTypes
 const wsServer = SocketIO(httpServer)
 
 wsServer.on("connection", socket => {
+    socket["nickname"] = socket.id
+
     socket.onAny((event) => {
         console.log(`Socket Event: ${event}`)
     })
-    socket.on("enter_room", (roomName, done) => {
-        // 들어가기 전
-        console.log(socket.rooms) // {socket.Id}
-        // 입장
+    socket.on("enterRoom", (roomName, done) => {
         socket.join(roomName)
-        // 들어간 후
+        done() // it's function from FE
         console.log(socket.rooms) // {socket.Id, "roomName"}
+        socket.to(roomName).emit("welcome", socket.nickname)
+    })
+    socket.on("disconnecting", () => {
+        socket.rooms.forEach((room) => socket.to(room).emit("bye", socket.nickname))
+    })
+    socket.on("new_message", (msg, room, done) => {
+        socket.to(room).emit("new_message", `${socket.nickname}: ${msg}`)
         done()
     })
+    socket.on("nickname", nickname => socket["nickname"] = nickname)
 })
 
 // with ws way
