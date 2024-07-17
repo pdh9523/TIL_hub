@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "keywords": [],
   "author": "",
-  "license": "KNU",
+  "license": "PDH",
   "description": "zoom clone using WebRTc and Websockets",
   "scripts": {
     "dev": "nodemon"
