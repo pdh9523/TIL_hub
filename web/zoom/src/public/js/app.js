@@ -8,8 +8,8 @@ const nickname = welcome.querySelector("#nickname")
 let check = false
 
 room.hidden = true
+// 방 이름
 let roomName;
-// 방 설정
 /**
  * 방을 생성하는 경우 enterRoom의 eventListener에 반응하는 함수
  *
@@ -17,7 +17,6 @@ let roomName;
  *
  * @return 없음
  */
-
 function handleRoomSubmit(event) {
     event.preventDefault()
     const input = enterRoom.querySelector("input")
