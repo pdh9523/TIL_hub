@@ -10,13 +10,8 @@ let check = false
 room.hidden = true
 // 방 이름
 let roomName;
-/**
- * 방을 생성하는 경우 enterRoom의 eventListener에 반응하는 함수
- *
- * @param {Object} event 이벤트 리스너를 통해 받아오는 이벤트
- *
- * @return 없음
- */
+
+
 function handleRoomSubmit(event) {
     event.preventDefault()
     const input = enterRoom.querySelector("input")
@@ -82,4 +77,20 @@ socket.on("new_message", addMessage)
 
 socket.on("bye", (user) => {
     addMessage(`${user}님이 퇴장 하셨습니다.`)
+})
+
+socket.on("room_change", (rooms) => {
+
+    const roomList = welcome.querySelector("ul");
+    roomList.innerHTML = "";
+    if (!rooms.length) {
+        roomList.innerHTML = "";
+        return
+    }
+
+    rooms.forEach(room => {
+        const li = document.createElement("li");
+        li.innerText = room;
+        roomList.appendChild(li);
+    })
 })
