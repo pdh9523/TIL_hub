@@ -1,17 +1,26 @@
-import sys
-input = sys.stdin.readline
+from functools import cpm_to_key
 
-def check(x):
-    res = ""
-    for char in x:
-        res += char
-        if char.isupper():
-            res = res[:-1]+chr(ord(char)-1)
-        elif char == "-":
-            res = res[:-1]+"{"
-
-    return res.lower(),res
+def comp(a,b):
+    if a.startwith(b):
+        return 1
+    elif b.startwith(a):
+        return -1
+    
+    idx = 0
+    while a[idx] == b[idx]:
+        idx += 1
+    
+    if a[idx] == "-":
+        return 1
+    elif b[idx] == "-":
+        return -1
+    
+    if a[idx].lower() == b[idx].lower():
+        return a[idx].islower() - b[idx].islower()
+    else:
+        return ord(a[idx].lower()) - ord(b[idx].lower())
 
 for _ in range(int(input())):
-    arr = sorted([input().strip() for _ in range(int(input()))], key=check)
+    N = int(input())
+    arr = sorted([input() for _ in range(N)], key=cpm_to_key(comp))
     print(*arr, sep="\n")
