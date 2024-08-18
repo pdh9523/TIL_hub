@@ -1,6 +1,6 @@
 import { Key } from "react"
 import Movie, {IMovieProps} from "../../components/movie"
-import styles from ".//web/react_nextjs/styles/home.module.css"
+import styles from "../../styles/home.module.css"
 import {API_URL} from "../constants"
 
 
