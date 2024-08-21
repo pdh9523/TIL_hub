@@ -2,6 +2,7 @@ package com.example.springboot_practice.dto;
 
 import java.time.LocalDateTime;
 
+import com.example.springboot_practice.entity.BoardEntity;
 import lombok.*;
 
 // DTO(Data Transfer Object), VO, Bean, Entity, ...
@@ -23,4 +24,21 @@ public class BoardDTO {
     // 작성, 수정시간
     private LocalDateTime boardCreatedTime;
     private LocalDateTime boardUpdatedTime;
+
+    // Entity -> DTO
+    public static BoardDTO toBoardDTO(BoardEntity boardEntity) {
+        BoardDTO boardDTO = new BoardDTO();
+        // 기본 사항
+        boardDTO.setId(boardEntity.getId());
+        boardDTO.setBoardWriter(boardEntity.getBoardWriter());
+        boardDTO.setBoardPass(boardEntity.getBoardPass());
+        boardDTO.setBoardContents(boardEntity.getBoardContents());
+        boardDTO.setBoardTitle(boardEntity.getBoardTitle());
+        // 조회수
+        boardDTO.setBoardHits(boardEntity.getBoardHits());
+        // 작성, 수정시간
+        boardDTO.setBoardCreatedTime(boardEntity.getCreatedTime());
+        boardDTO.setBoardUpdatedTime(boardEntity.getUpdatedTime());
+        return boardDTO;
+    }
 }
