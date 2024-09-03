@@ -1,6 +1,7 @@
 package com.example.crud.dto;
 
-import com.example.crud.entity.Role;
+import com.example.crud.entity.constants.Role;
+import com.example.crud.entity.constants.UserStatus;
 
 public record UserDTO(
         Long id,
@@ -8,20 +9,21 @@ public record UserDTO(
         String password,
         String nickname,
         Role role,
-        Boolean isDeleted
+        Boolean isDeleted,
+        UserStatus userStatus
 ) {
     
     // 생성자
     // factory method of
-    public static UserDTO of (Long id, String email, String password, String nickname, Role role, Boolean isDeleted) {
-        return new UserDTO(id, email, password, nickname, role, isDeleted);
+    public static UserDTO of (Long id, String email, String password, String nickname, Role role, Boolean isDeleted, UserStatus userStatus) {
+        return new UserDTO(id, email, password, nickname, role, isDeleted, userStatus);
     }  
     
     // 생성자
     // security에서 사용할 factory method
     public static UserDTO of (String email) {
         return new UserDTO(
-                null, email, null,null,null,null
+                null, email, null,null,null,null, null
         );
     }
 }

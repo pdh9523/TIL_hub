@@ -1,5 +1,10 @@
 package com.example.crud.config;
 
+import com.example.crud.config.filter.CustomAuthenticationFilter;
+import com.example.crud.config.filter.JwtAuthorizationFilter;
+import com.example.crud.config.handler.CustomAuthFailureHandler;
+import com.example.crud.config.handler.CustomAuthSuccessHandler;
+import com.example.crud.config.handler.CustomAuthenticationProvider;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
@@ -9,6 +14,7 @@ import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.authorization.AuthorizationDecision;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
