@@ -1,3 +1,1 @@
-print( 13 // -4 )
-print( -13 % 4 )
-print(-13 % -4)
+{"div.widget_shopping_cart_content":"<div class=\"widget_shopping_cart_content\">\n\n\t<p class=\"woocommerce-mini-cart__empty-message\">No products in the cart.</p>\n\n\n</div>","#user-cart-menu .header-cart-counter":"<i class=\"header-cart-counter counter-hidden\"></i>"}

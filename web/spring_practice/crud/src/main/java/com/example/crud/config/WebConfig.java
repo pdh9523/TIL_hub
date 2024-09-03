@@ -1,5 +1,6 @@
 package com.example.crud.config;
 
+import com.example.crud.config.interceptor.JwtTokenInterceptor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.Ordered;
@@ -12,17 +13,19 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @RequiredArgsConstructor
 public class WebConfig implements WebMvcConfigurer {
     
-//    어케 쓰나요
-//    private final JwtTokenInterceptor jwtTokenInterceptor;
-//
-//    @Override
-//    public void addInterceptors(InterceptorRegistry registry) {
-//        registry.addInterceptor(jwtTokenInterceptor)
-//                .addPathPatterns("/**")
-//                .excludePathPatterns("/user/login", "/login", "/main/rootPage");
-//    }
+    private final JwtTokenInterceptor jwtTokenInterceptor;
 
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(jwtTokenInterceptor)
+                .addPathPatterns("/**")
+                .excludePathPatterns("/user/login", "/login", "/main/rootPage");
+    }
 
+    /*
+    * 정적 리소스가 위치할 수 있는 경로
+    * addResourceHandlers 매서드에서 사용된다.
+     */
     private static final String[] CLASSPATH_RESOURCE_LOCATIONS = {
             "classpath:/",
             "classpath:/static/",
