@@ -4,7 +4,7 @@ dr = (1,0),(0,1),(-1,0),(0,-1)
 
 def backtrack(i=0,j=-1,visit=[]):
     if len(visit)==5:
-        if dfs(visit):
+        if bfs(visit):
             tmp = 0
             for dx,dy in visit:
                 tmp += arr[dx][dy]
@@ -19,7 +19,7 @@ def backtrack(i=0,j=-1,visit=[]):
     backtrack(i,j,visit)
 
 
-def dfs(arr):
+def bfs(arr):
     visit = [[0]*M for _ in range(N)]
 
     for i,j in arr:
