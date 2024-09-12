@@ -2,7 +2,7 @@ import sys; input = sys.stdin.readline
 
 
 def bi_search(n):
-    now = arr[0] + n
+    now = arr[0] + n 
     cnt = 1
     for i in arr[1:]:
         if now >= i: continue
@@ -26,7 +26,7 @@ end = arr[-1] - arr[0]
 while start < end:
     now = (start+end)//2
     if bi_search(now):
-        end = now
+        end = now 
     else:
         start = now + 1
     
