@@ -1,1 +1,6 @@
-{"div.widget_shopping_cart_content":"<div class=\"widget_shopping_cart_content\">\n\n\t<p class=\"woocommerce-mini-cart__empty-message\">No products in the cart.</p>\n\n\n</div>","#user-cart-menu .header-cart-counter":"<i class=\"header-cart-counter counter-hidden\"></i>"}
+arr = [1,2,3]
+
+for i in arr:
+    if i == 2:
+        i = 5
+print(arr)
