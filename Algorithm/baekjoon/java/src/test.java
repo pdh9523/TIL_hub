@@ -1,42 +1,28 @@
-import java.util.Arrays;
+class Container<T> {
+    T value;
 
-public class test {
-
-//    static class Test {
-//        int x;
-//
-//        public Test(int x) {
-//            this.x = x;
-//        }
-//
-//        @Override
-//        public String toString() {
-//            return "x:"+ x;
-//        }
-//    }
-//    public static void main(String[] args) throws Exception {
-//        Test a = new Test(2);
-//        System.out.println("in out: "+a);
-//        foo(a);
-//        System.out.println("in out: "+a);
-//    }
-//
-//    private static void foo(Test b) {
-//        System.out.println("in function: "+b);
-//        b = new Test(1);
-//        System.out.println("in function: "+b);
-//    }
-
-    private static void func(int i, int[] j) {
-        i = 20;
-        j[3] = 400;
+    public Container(T t) {
+        this.value = t;
     }
 
-    public static void main(String[] args) {
-        int i = 10, j[] = {1, 2, 3, 4};
+    public void print() {
+        new Printer().print(this.value);
+    }
 
-        func(i, j);
-        System.out.println(i);
-        System.out.println(Arrays.toString(j));
+    static class Printer {
+        public void print(Integer a) {
+            System.out.println("A" + a);
+        }
+        public void print(Object a) {
+            System.out.println("B" + a);
+        }
+        public void print(Number a) {
+            System.out.println("C" + a);
+        }
+    }
+}
+public class test {
+    public static void main(String[] args) {
+        new Container<>(0).print();
     }
 }
