@@ -2,7 +2,6 @@
 
 ## 서론
 
-
 ## 설치
 설치방법은 DooD와 DinD로 나뉜다.
 - DinD: Docker in Docker의 약어로, 도커 컨테이너 내부에서 호스트 도커 데몬과 다른 별개의 새로운 도커 데몬을 실행시키는 것
@@ -65,6 +64,23 @@ volumes:
   jenkins-data:   # Jenkins 데이터를 영구적으로 저장할 볼륨
   jenkins-docker-certs:   # Docker 인증서 데이터를 저장할 볼륨
 
+```
+
+2. Dockerfile 설정
+
+```Dockerfile
+FROM jenkins/jenkins:2.414.3-jdk17    # 현재 최신 버전
+USER root
+RUN apt-get update && apt-get install -y lsb-release
+RUN curl -fsSLo /usr/share/keyrings/docker-archive-keyring.asc \
+  https://download.docker.com/linux/debian/gpg
+RUN echo "deb [arch=$(dpkg --print-architecture) \
+  signed-by=/usr/share/keyrings/docker-archive-keyring.asc] \
+  https://download.docker.com/linux/debian \
+  $(lsb_release -cs) stable" > /etc/apt/sources.list.d/docker.list
+RUN apt-get update && apt-get install -y docker-ce-cli
+USER jenkins
+RUN jenkins-plugin-cli --plugins "blueocean docker-workflow"
 ```
 
 ### DooD
