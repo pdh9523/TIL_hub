@@ -2,7 +2,6 @@ def backtrack(idx=0, res=0):
     if idx==N:
         return
     
-    
     backtrack(idx+1, res+arr[idx])
     backtrack(idx+1, res)
     backtrack(idx+1, abs(res-arr[idx]))
