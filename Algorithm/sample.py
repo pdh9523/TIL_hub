@@ -2,7 +2,10 @@ cache = dict()
 
 def memo(f):
 	def wrapper(*args):
-		return cache.get(*args, f(*args))
+		if args not in cache: 
+			cache[args] = f(*args)
+		return cache[args]
+	
 	return wrapper
 
 @memo
